@@ -12,7 +12,7 @@ template<typename T>
 class Elemento {
  private:
   T *info;
-  Elemento<T>* _next;
+  Elemento<T> *_next;
 
  public:
   /**

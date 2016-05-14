@@ -1,1 +1,0 @@
-// Isso é um esqueleto da arquitetura

@@ -15,5 +15,11 @@ enum Destination {
     kExit
 };
 
+enum SemaphoreState {
+    kNorth,
+    kEast,
+    kSouth,
+    kWest
+}
 
 #endif

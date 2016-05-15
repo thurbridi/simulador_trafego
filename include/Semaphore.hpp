@@ -1,7 +1,29 @@
-// Isso é um esqueleto da arquitetura
+#ifndef SEMAPHORE_HPP
+#define SEMAPHORE_HPP
+
+#include "TrafficEnum.h"
+
+class Semaphore {
+ private:
+  SemaphoreState currentState_;
+
+ public:
+  Semaphore();
+
+  ~Semaphore();
+
+  SemaphoreState getCurrentState() const {
+    return currentState_;
+  }
+
+  void nextState() {
+    currentState_ = (currentState_ + 1) % 4;
+  }
+};
+
+#endif
 
 /*
-Dados dos semáforos:
   S1:
     O1leste ---> C1leste (80%)
             \--> N1norte (10%)

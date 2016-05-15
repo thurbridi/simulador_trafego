@@ -42,6 +42,16 @@ class List {
         insertAfter(it, value);
     }
 
+    void insert(const T& value) {
+        Link<T>* it = head();
+        int pos = 0;
+        while (pos < size() && it->next()->data() < value) {
+            it = it->next();
+            ++pos;
+        }
+        insertAfter(it, value);
+    }
+
     T erase(int position) {
         if (position < 0 || size() <= position) {
             throw OutOfRange{};
@@ -51,16 +61,6 @@ class List {
             it = it->next();
         }
         return erase(it);
-    }
-
-    void insert(const T& value) {
-        Link<T>* it = head();
-        int pos = 0;
-        while (pos < size() && it->next()->data() < value) {
-            it = it->next();
-            ++pos;
-        }
-        insertAfter(it, value);
     }
 
     void clear() {
@@ -78,6 +78,20 @@ class List {
             it = it->next();
         }
         return it->data();
+    }
+
+    T front() const {
+        if (empty()) {
+            throw Empty{};
+        }
+        return head()->data();
+    }
+
+    T back() const {
+        if (empty()) {
+            throw Empty{};
+        }
+        return tail()->data();
     }
 
     int position(const T& value) const {

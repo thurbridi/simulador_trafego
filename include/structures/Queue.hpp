@@ -19,7 +19,7 @@ class Queue : protected List<T> {
 
     void clear() { List<T>::clear(); }
 
-    T front() { return at(0); }
+    T front() { return List<T>::front(); }
 
     bool empty() const { ForwardList<T>::empty(); }
 

@@ -1,14 +1,12 @@
 #ifndef CONSUMERLANE_HPP
 #define CONSUMERLANE_HPP
 
-#include "Lane.hpp"
+#include "Lane.h"
 
 
 class ConsumerLane : protected Lane {
  public:
-     ConsumerLane(int space, int travel_time)
-         : Lane::Lane{space, travel_time}, vehicle_count_{0}
-     {}
+     ConsumerLane(int space, int travel_time);
 
  private:
     int vehicle_count_;

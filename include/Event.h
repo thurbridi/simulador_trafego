@@ -6,7 +6,7 @@
 
 class Event {
  public:
-    Event(int time, EventType type, void* element_A, void* element_B = nullptr);
+    Event(int time, EventType type, void* source);
 
     int time() const;
 
@@ -14,15 +14,12 @@ class Event {
 
     void* elementA() const;
 
-    void* elementB() const;
-
     bool operator<(const Event& e) const;
 
  private:
     int time_;
     EventType type_;
-    void* element_A_;
-    void* element_B_;
+    void* source_;
 };
 
 #endif

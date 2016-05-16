@@ -79,6 +79,8 @@ class ArrayList {
         throw OutOfRange{};
     }
 
+    int size() { return size_; }
+
     bool empty() const { return last_ == -1; }
 
 	bool full() const { return last_ == size_ - 1; }

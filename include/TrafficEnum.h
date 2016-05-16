@@ -1,4 +1,4 @@
-#ifndef TRAFFICENUM_H_
+    #ifndef TRAFFICENUM_H_
 #define TRAFFICENUM_H_
 
 enum EventType {
@@ -20,6 +20,6 @@ enum SemaphoreState {
     kEast,
     kSouth,
     kWest
-}
+};
 
 #endif

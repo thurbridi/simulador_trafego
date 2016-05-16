@@ -4,9 +4,9 @@
 #include "Lane.h"
 
 
-class ConsumerLane : protected Lane {
+class ConsumerLane : public Lane {
  public:
-     ConsumerLane(int space, int travel_time);
+    ConsumerLane(int space, int travel_time);
 
  private:
     int vehicle_count_;

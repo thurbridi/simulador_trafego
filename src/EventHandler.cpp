@@ -2,7 +2,7 @@
 
 
 void EventHandler::schedule(const Event& e) {
-    
+    event_list_.insert(e);
 }
 
 void EventHandler::spawnVehicle() {
@@ -21,32 +21,28 @@ void EventHandler::changeSemaphore() {
     std::cout << "semaphore lights changed\n";
 }
 
-void EventHandler::processEvent(const Event& event) {
-    switch (event.getType()) {
-      // SPAWN_VEHICLE
-      case 0:
-        spawnVehicle();
-        break;
+void EventHandler::processEvent(const Event& e) {
+  switch (e.getType()) {
+    // SPAWN_VEHICLE
+    case 0:
+      spawnVehicle();
+      schedule(Event(e.getTime + 10, kSpawnVehicle, nullptr));
+      schedule(Event(e.getTime + 5, kArrival, nullptr));
+      break;
 
-      // CHANGE_LANE
-      case 1:
-        changeLane();
-        break;
+    // CHANGE_LANE
+    case 1:
+      changeLane();
+      break;
 
-      // REMOVE_VEHICLE
-      case 2:
-        removeVehicle();
-        break;
+    // REMOVE_VEHICLE
+    case 2:
+      removeVehicle();
+      break;
 
-      // CHANGE_SEMAPHORE
-      case 3:
-        changeSemaphore();
-        break;
-    }
+    // CHANGE_SEMAPHORE
+    case 3:
+      changeSemaphore();
+      break;
   }
-
-
-
-};
-
-#endif
+}

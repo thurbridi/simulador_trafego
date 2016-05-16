@@ -1,8 +1,12 @@
 #ifndef EVENT_H_
 #define EVENT_H_
 
-#include "TrafficEnum.h"
-
+enum EventType {
+    kSpawnVehicle,
+    kChangeLane,
+    kArrival,
+    kChangeSemaphore
+};
 
 class Event {
  public:

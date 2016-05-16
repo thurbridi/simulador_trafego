@@ -3,6 +3,12 @@
 
 #include "Lane.h"
 
+enum SemaphoreState {
+    kNorth,
+    kEast,
+    kSouth,
+    kWest
+};
 
 class Semaphore {
  public:

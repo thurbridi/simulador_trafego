@@ -1,8 +1,12 @@
 #ifndef VEHICLE_H_
 #define VEHICLE_H_
 
-#include "TrafficEnum.h"
-
+enum Destination {
+    kFront,
+    kLeft,
+    kRight,
+    kExit
+};
 
 class Vehicle {
 public:
@@ -10,7 +14,7 @@ public:
 
     bool arrived() const;
     void set_arrived();
-    
+
     int size() const;
     Destination destination() const;
 

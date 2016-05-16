@@ -3,20 +3,24 @@
 
 #include <iostream>
 #include "Event.h"
+#include "structures/List.hpp"
 
 class EventHandler {
+ private:
+  List<Event> event_list_;
+
  public:
-    void processEvent(const Event& e);
+  void processEvent(const Event& e);
 
-    void schedule(const Event& e);
+  void schedule(const Event& e);
 
-    void spawnVehicle();
+  void spawnVehicle();
 
-    void changeLane();
+  void changeLane();
 
-    void removeVehicle();
+  void removeVehicle();
 
-    void changeSemaphore();
+  void changeSemaphore();
 };
 
 #endif

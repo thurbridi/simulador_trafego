@@ -9,6 +9,10 @@
 
 class System {
  public:
+    System(int simulation_time, int semaphore_time);
+
+    ~System();
+
     void setUp();
 
     void run();
@@ -16,6 +20,7 @@ class System {
     void showResults();
 
  private:
+    int simulation_time_, semaphore_time_;
     ArrayList<Lane*> lane_;
     ArrayList<Semaphore*> sem_;
     EventHandler handler_;

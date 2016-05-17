@@ -5,20 +5,20 @@
 
 enum SemaphoreState {
     kNorth,
-    kWest,
+    kEast,
     kSouth,
-    kEast
+    kWest
 };
 
 class Semaphore {
  public:
     Semaphore(int time);
 
-    void setLanes(Lane* north, Lane* west, Lane* south, Lane* east) {
+    void setLanes(Lane* north, Lane* east, Lane* south, Lane* west) {
         lane_.insert(kNorth, north);
-        lane_.insert(kWest, west);
-        lane_.insert(kSouth, south);
         lane_.insert(kEast, east);
+        lane_.insert(kSouth, south);
+        lane_.insert(kWest, west);
     }
 
     void changeState();

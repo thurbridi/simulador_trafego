@@ -1,7 +1,8 @@
 #include "../include/EventHandler.h"
 
 
-void EventHandler::processEvent(const Event& e) {
+int EventHandler::processNextEvent() {
+    Event e = event_list_.popFront();
     switch (e.type()) {
     // SPAWN_VEHICLE
     case 0:
@@ -27,11 +28,17 @@ void EventHandler::processEvent(const Event& e) {
         schedule(Event{e.time() + 20, kChangeSemaphore, e.elementA()});
         break;
     }
+
+    return e.time();
 }
 
 
 void EventHandler::schedule(const Event& e) {
     event_list_.insert(e);
+}
+
+int EventHandler::n_of_events() {
+    return event_list_.size();
 }
 
 void EventHandler::arrival() {

@@ -6,7 +6,6 @@ Lane::Lane(int space, int travel_time)
       space_{space},
       travel_time_{travel_time}
 {
-    setDestinations(nullptr);
 }
 
 void Lane::setDestinations(Lane* front, Lane* left, Lane* right) {

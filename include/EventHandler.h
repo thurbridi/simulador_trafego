@@ -7,9 +7,11 @@
 
 class EventHandler {
  public:
-    void processEvent(const Event& e);
+    int processNextEvent();
 
     void schedule(const Event& e);
+
+    int n_of_events();
 
     void spawnVehicle();
 

@@ -13,17 +13,17 @@ class Queue : protected List<T> {
 
     ~Queue() { clear(); }
 
-    void push(const T& value) { pushBack(value); }
+    void push(const T& value) { List<T>::pushBack(value); }
 
-    T pop() { return popFront(); }
+    T pop() { return List<T>::popFront(); }
 
     void clear() { List<T>::clear(); }
 
     T front() { return List<T>::front(); }
 
-    bool empty() const { ForwardList<T>::empty(); }
+    bool empty() const { List<T>::empty(); }
 
-    int size() const { ForwardList<T>::size(); }
+    int size() const { List<T>::size(); }
 };
 
 #endif

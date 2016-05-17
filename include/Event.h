@@ -20,6 +20,8 @@ class Event {
 
     bool operator<(const Event& e) const;
 
+    bool operator<=(const Event& e) const;
+
  private:
     int time_;
     EventType type_;

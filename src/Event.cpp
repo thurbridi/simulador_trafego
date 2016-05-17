@@ -19,6 +19,10 @@ void* Event::elementA() const {
     return source_;
 }
 
+bool Event::operator<=(const Event& e) const {
+    return time() <= e.time();
+}
+
 bool Event::operator<(const Event& e) const {
     return time() < e.time();
 }

@@ -5,24 +5,26 @@
 
 
 void System::setUp() {
+    Semaphore* s = new Semaphore{20};
+    handler_.schedule(Event{0, kChangeSemaphore, (void*) s});
+
     SourceLane* left = new SourceLane{2000, 90, 0, 0};
+    handler_.schedule(Event{0, kSpawnVehicle, (void*) left});
+
     ConsumerLane* right = new ConsumerLane{400, 48};
-    Semaphore* s = new Semaphore{20, left};
+
+    
+
+    left->setDestinations(right);
     lane_.pushBack(left);
     lane_.pushBack(right);
+    s->setLanes(nullptr, left, nullptr, right);
     sem_.pushBack(s);
-
-    for (int i = 0; i < sem_.size(); ++i) {
-        Semaphore* s = sem_.at(i);
-        handler_.schedule(Event{0, kChangeSemaphore, (void*) s});
-    }
-
-    for (int i = 0; i < lane_.size(); ++i) {
-        Lane* l = lane_.at(i);
-        handler_.schedule(Event{0, kSpawnVehicle, (void*) l});
-    }
 }
 
 void System::run() {
-
+    int event_time = 0;
+    while (handler_.n_of_events() > 0 && event_time <= 60) {   // this 60 represents the running time of simulation
+        event_time = handler_.processNextEvent();
+    }
 }

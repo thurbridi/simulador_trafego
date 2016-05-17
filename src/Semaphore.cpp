@@ -3,9 +3,7 @@
 #include "../include/ConsumerLane.h"
 #include "../include/SourceLane.h"
 
-Semaphore::Semaphore(int time, Lane* lane) : time_{time}, state_{kWest} {
-    lane_.pushFront(lane);
-}
+Semaphore::Semaphore(int time) : time_{time} {}
 
 void Semaphore::changeState() {
     state_ = SemaphoreState((state_ + 1) % 4);

@@ -11,7 +11,7 @@ class ArrayList {
          : data_{new T[kDefaultSize]}, size_{kDefaultSize}, last_{-1}
      {}
 
-    explicit ArrayList(int size) : data_{new T[size]}, size_{size} {}
+    explicit ArrayList(int size) : data_{new T[size]}, size_{size}, last_{-1} {}
 
     void pushFront(const T& value) { insert(0, value); }
 
@@ -40,7 +40,7 @@ class ArrayList {
             throw Full{};
         }
         int pos = 0;
-        while (pos <= last_ && value > data_[pos]) {
+        while (pos <= last_ && data_[pos] <= value) {
             ++pos;
         }
         insert(pos, value);
@@ -79,7 +79,7 @@ class ArrayList {
         throw OutOfRange{};
     }
 
-    int size() { return size_; }
+    int size() { return last_ + 1; }
 
     bool empty() const { return last_ == -1; }
 

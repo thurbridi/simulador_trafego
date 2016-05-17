@@ -45,7 +45,7 @@ class List {
     void insert(const T& value) {
         Link<T>* it = head();
         int pos = 0;
-        while (pos < size() && it->next()->data() < value) {
+        while (pos < size() && it->next()->data() <= value) {
             it = it->next();
             ++pos;
         }

@@ -1,8 +1,8 @@
 #include "../include/Vehicle.h"
 
 
-Vehicle::Vehicle(int size, Destination destination)
-    : size_{size + 3}, destination_{destination}, arrived_{false}
+Vehicle::Vehicle(int size, Direction direction)
+    : size_{size + 3}, direction_{direction}, arrived_{false}
 {
 }
 
@@ -10,8 +10,8 @@ int Vehicle::size() const {
     return size_;
 }
 
-Destination Vehicle::destination() const {
-    return destination_;
+Direction Vehicle::direction() const {
+    return direction_;
 }
 
 bool Vehicle::arrived() const {

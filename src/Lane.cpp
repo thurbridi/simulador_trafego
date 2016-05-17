@@ -6,12 +6,10 @@ Lane::Lane(int space, int travel_time)
       space_{space},
       travel_time_{travel_time}
 {
-    setDestinations(nullptr, nullptr, nullptr);
+    setDestinations(nullptr);
 }
 
-void Lane::setDestinations(Lane* front,
-                           Lane* left = nullptr,
-                           Lane* right = nullptr) {
+void Lane::setDestinations(Lane* front, Lane* left, Lane* right) {
     lanes_.insert(kFront, front);
     lanes_.insert(kLeft, left);
     lanes_.insert(kRight, right);
@@ -25,7 +23,7 @@ void Lane::insertVehicle(const Vehicle& v) {
 
 bool Lane::moveVehicle() {
     Vehicle v = front();
-    Lane* dest = lanes_.at(v.destination);
+    Lane* dest = lanes_.at(v.direction());
     if (dest->space() < v.size()) {
         return false;
     }

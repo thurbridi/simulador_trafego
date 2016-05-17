@@ -1,7 +1,7 @@
 #ifndef VEHICLE_H_
 #define VEHICLE_H_
 
-enum Destination {
+enum Direction {
     kFront,
     kLeft,
     kRight,
@@ -10,17 +10,17 @@ enum Destination {
 
 class Vehicle {
 public:
-    Vehicle(int size, Destination destination);
+    Vehicle(int size, Direction destination);
 
     bool arrived() const;
     void set_arrived();
 
     int size() const;
-    Destination destination() const;
+    Direction direction() const;
 
 private:
     int size_;
-    Destination destination_;
+    Direction direction_;
     bool arrived_;
 };
 

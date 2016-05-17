@@ -6,21 +6,21 @@
 #include "structures/List.hpp"
 
 class EventHandler {
- private:
-  List<Event> event_list_;
-
  public:
-  void processEvent(const Event& e);
+    void processEvent(const Event& e);
 
-  void schedule(const Event& e);
+    void schedule(const Event& e);
 
-  void spawnVehicle();
+    void spawnVehicle();
 
-  void changeLane();
+    void changeLane();
 
-  void removeVehicle();
+    void arrival();
 
-  void changeSemaphore();
+    void changeSemaphore();
+
+ private:
+    List<Event> event_list_;
 };
 
 #endif

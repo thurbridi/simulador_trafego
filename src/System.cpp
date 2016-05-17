@@ -5,11 +5,11 @@
 
 
 void System::setUp() {
-    SourceLane* left = new SourceLane{2000, 90, };
+    SourceLane* left = new SourceLane{2000, 90, 0, 0};
     ConsumerLane* right = new ConsumerLane{400, 48};
-    Semaphore s{20, left};
-    lane_.pushBack(*left);
-    lane_.pushBack(*right);
+    Semaphore* s = new Semaphore{20, left};
+    lane_.pushBack(left);
+    lane_.pushBack(right);
     sem_.pushBack(s);
 
     for (int i = 0; i < sem_.size(); ++i) {

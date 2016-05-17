@@ -2,7 +2,6 @@
 
 #include "../include/ConsumerLane.h"
 #include "../include/SourceLane.h"
-#include "../include/TrafficEnum.h"
 
 Semaphore::Semaphore(int time, Lane* lane) : time_{time}, state_{kWest} {
     lane_.pushFront(lane);

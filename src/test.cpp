@@ -1,11 +1,10 @@
-#include "../include/Lane.hpp"
-#include "../include/structures/CircularList.hpp"
+#include "../include/System.h"
 
 int main()
 {
-    {
-        CircularList<int> l{};
-    }
+    System sys;
+    sys.setUp();
+    sys.run();
 
     return 0;
 }

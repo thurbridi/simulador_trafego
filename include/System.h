@@ -16,7 +16,6 @@ class System {
  private:
     ArrayList<Lane*> lane_;
     ArrayList<Semaphore*> sem_;
-    List<Event> event_;
     EventHandler handler_;
 };
 

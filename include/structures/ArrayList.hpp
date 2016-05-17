@@ -1,6 +1,6 @@
 // Copyright [2016] <Filipe Borba>
 
-#ifndef ARRAYlIST_HPP_
+#ifndef ARRAYLIST_HPP_
 #define ARRAYLIST_HPP_
 
 
@@ -13,7 +13,7 @@ class ArrayList {
 
     explicit ArrayList(int size) : data_{new T[size]}, size_{size} {}
 
-    void pushFront(const T& value) { insert(value, 0); }
+    void pushFront(const T& value) { insert(0, value); }
 
 	T popFront() { return erase(0); }
 

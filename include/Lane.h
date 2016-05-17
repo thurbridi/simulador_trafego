@@ -18,9 +18,9 @@ class Lane : protected Queue<Vehicle> {
 
      virtual void insertVehicle(const Vehicle& v);
 
-     int space() const { return space_; }
+     int space() const;
 
-     int travel_time() const { return travel_time_; }
+     int travel_time() const;
 
  private:
     int space_;

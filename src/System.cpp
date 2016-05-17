@@ -37,22 +37,16 @@ void System::setUp() {
 
     // Connect lanes with eachother
     N1sul->setDestinations(S1sul, C1leste, O1oeste);
-    // N1norte->setDestinations();
 
     N2sul->setDestinations(S2sul, L1leste, C1oeste);
-    // N2norte->setDestinations();
 
     L1oeste->setDestinations(C1oeste, S2sul, N2norte);
-    // L1leste->setDestinations();
 
     S2norte->setDestinations(N2norte, C1oeste, L1leste);
-    // S2sul->setDestinations();
 
     S1norte->setDestinations(N1norte, O1oeste, C1leste);
-    // S1sul->setDestinations();
 
     O1leste->setDestinations(C1leste, N1norte, S1sul);
-    // O1oeste->setDestinations();
 
     C1oeste->setDestinations(O1oeste, S1sul, N1norte);
     C1leste->setDestinations(L1leste, N2norte, S2sul);

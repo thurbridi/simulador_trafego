@@ -5,6 +5,7 @@
 #include "Event.h"
 #include "structures/List.hpp"
 
+
 class EventHandler {
  public:
     int processNextEvent();
@@ -13,7 +14,7 @@ class EventHandler {
 
     int n_of_events();
 
-    void spawnVehicle();
+    void spawnVehicle(SourceLane* lane);
 
     void changeLane();
 

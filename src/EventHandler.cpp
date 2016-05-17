@@ -7,8 +7,10 @@ int EventHandler::processNextEvent() {
     // SPAWN_VEHICLE
     case 0:
         spawnVehicle();
+
         schedule(Event{e.time() + 10, kSpawnVehicle, e.elementA()});
         schedule(Event{e.time() + 5, kArrival, e.elementA()});
+        std::cerr << "vehicle spawned\n";
         break;
 
     // CHANGE_LANE
@@ -42,17 +44,26 @@ int EventHandler::n_of_events() {
 }
 
 void EventHandler::arrival() {
+
     std::cerr << "vehicle arrived\n";
 }
 
-void EventHandler::changeLane() {
+void EventHandler::changeLane(Semaphore* sem) {
+    // enquanto
     std::cerr << "attempting to change lanes\n";
 }
 
-void EventHandler::changeSemaphore() {
+void EventHandler::changeSemaphore(Semaphore* sem) {
+    // troca o sinal
+    // reagenda troca de sinal
     std::cout << "semaphore lights changed\n";
 }
 
-void EventHandler::spawnVehicle() {
-    std::cerr << "vehicle spawned\n";
+void EventHandler::spawnVehicle(SourceLane* lane) {
+    Vechicle v{lane->generateDirection()};
+    lane->insertVehicle(v);
+    std::uniform_int_distribuition<int> dist{lane->base_frequency() - lane->variation(),
+                                             lane->base_frequency() + lane->variation()};
+
+
 }

@@ -15,9 +15,18 @@ void Lane::setDestinations(Lane* front, Lane* left, Lane* right) {
 }
 
 void Lane::insertVehicle(const Vehicle& v) {
-    // randomize destination
-    // push(Vehicle{v.size(), NEWDESTINATION});
+    push(Vehicle{v.size(), generateDirection()});
     space_ -= v.size();
+}
+
+Direction generateDirection() {
+    std::uniform_int_distribuition<int> dist{1, 100};
+    int chance = dist(rd_);
+    for (int i = 0; i < turn_chance_.size(); ++i) {
+      if (chance <= turn_chance_.at(i)) {
+        return (Direction) i;
+      }
+    }
 }
 
 bool Lane::moveVehicle() {

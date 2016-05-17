@@ -11,6 +11,11 @@ SourceLane::SourceLane(int space,
 {}
 
 void SourceLane::spawnVehicle() {
+std::uniform_int_distribuition<int> dist{5, 9};
+    int size  = dist(rd_);
+    if (size <= space()) {
+      insertVehicle(Vehicle{size, generateDirection()});
+    }
 }
 
 int SourceLane::base_frequency() const {

@@ -1,8 +1,8 @@
-#include "../include/System.h"
+#include <iostream>
 
+#include "../include/System.h"
 #include "../include/ConsumerLane.h"
 #include "../include/SourceLane.h"
-
 
 void System::setUp() {
     Semaphore* s = new Semaphore{20};
@@ -13,7 +13,7 @@ void System::setUp() {
 
     ConsumerLane* right = new ConsumerLane{400, 48};
 
-    
+
 
     left->setDestinations(right);
     lane_.pushBack(left);
@@ -24,7 +24,11 @@ void System::setUp() {
 
 void System::run() {
     int event_time = 0;
-    while (handler_.n_of_events() > 0 && event_time <= 60) {   // this 60 represents the running time of simulation
+    while (handler_.n_of_events() > 0 && event_time <= 200) {   // this 60 represents the running time of simulation
         event_time = handler_.processNextEvent();
     }
+}
+
+void System::showResults() {
+    std::cout << "cars got in and out, yay!\n";
 }

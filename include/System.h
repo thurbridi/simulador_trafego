@@ -13,6 +13,8 @@ class System {
 
     void run();
 
+    void showResults();
+
  private:
     ArrayList<Lane*> lane_;
     ArrayList<Semaphore*> sem_;

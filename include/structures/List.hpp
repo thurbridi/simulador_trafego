@@ -128,7 +128,9 @@ class List {
 
     T erase(Link<T>* position) {
         position->prev()->set_next(position->next());
-        position->next()->set_prev(position->prev());
+        if (position->next()) {
+            position->next()->set_prev(position->prev());
+        }
         if (position == tail_) {
             tail_ = tail_->prev();
         }

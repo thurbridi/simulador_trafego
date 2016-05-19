@@ -2,11 +2,10 @@
 
 
 Vehicle::Vehicle(int size, Direction direction)
-    : size_{size + 3}, direction_{direction}, arrived_{false}
-{
-}
+    : size_{size}, direction_{direction}, arrived_{false}
+{}
 
-int Vehicle::size() const {
+int Vehicle::getSize() const {
     return size_;
 }
 

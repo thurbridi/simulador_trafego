@@ -10,7 +10,7 @@ enum Direction {
 
 class Vehicle {
 public:
-    Vehicle(Direction destination);
+    Vehicle(int size, Direction destination);
 
     bool arrived() const;
     void set_arrived();

@@ -12,8 +12,8 @@ class Lane : protected Queue<Vehicle> {
      Lane(int space, int travel_time);
 
      void setDestinations(Lane* front,
-                          Lane* left = nullptr,
-                          Lane* right = nullptr);
+                          Lane* left,
+                          Lane* right);
 
      virtual bool moveVehicle();
 

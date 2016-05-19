@@ -2,9 +2,12 @@
 #define EVENT_HANDLER_HPP
 
 #include <iostream>
+#include <cstdlib>
+#include <ctime>
 #include "Event.h"
+#include "Lane.h"
+#include "SourceLane.h"
 #include "structures/List.hpp"
-
 
 class EventHandler {
  public:
@@ -14,13 +17,13 @@ class EventHandler {
 
     int n_of_events();
 
-    void spawnVehicle(SourceLane* lane);
+    void spawnVehicle(void* lane, int current_time);
 
-    void changeLane();
+    void changeLane(void* semaphore);
 
     void arrival();
 
-    void changeSemaphore();
+    void changeSemaphore(void *semaphore);
 
  private:
     List<Event> event_list_;

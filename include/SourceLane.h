@@ -8,8 +8,6 @@ class SourceLane : public Lane {
  public:
      SourceLane(int space, int travel_time, int base_frequency, int variation);
 
-     void spawnVehicle();
-
      int base_frequency() const;
 
      int variation() const;

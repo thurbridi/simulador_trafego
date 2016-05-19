@@ -53,30 +53,28 @@ void System::setUp() {
 
     // Create Semaphores
     Semaphore* S1 = new Semaphore{semaphore_time_};
+    S1->setLanes(N1norte, C1leste, S1sul, O1oeste);
     Semaphore* S2 = new Semaphore{semaphore_time_};
+    S2->setLanes(N2norte, L1leste, S2sul, C1oeste);
 
     // Create first events
-    // TODO
-    Semaphore* s = new Semaphore{semaphore_time_};
-    handler_.schedule(Event{0, kChangeSemaphore, (void*) s});
+    handler_.schedule(Event{0, kChangeSemaphore, (void*) S1});
+    handler_.schedule(Event{0, kChangeSemaphore, (void*) S2});
 
-    SourceLane* left = new SourceLane{2000, 90, 0, 0};
-    handler_.schedule(Event{0, kSpawnVehicle, (void*) left});
+    handler_.schedule(Event{0, kSpawnVehicle, N1sul});
+    handler_.schedule(Event{0, kSpawnVehicle, N2sul});
 
-    ConsumerLane* right = new ConsumerLane{400, 48};
+    handler_.schedule(Event{0, kSpawnVehicle, L1oeste});
 
+    handler_.schedule(Event{0, kSpawnVehicle, S2norte});
+    handler_.schedule(Event{0, kSpawnVehicle, S1norte});
 
-
-    left->setDestinations(right);
-    lane_.pushBack(left);
-    lane_.pushBack(right);
-    s->setLanes(nullptr, left, nullptr, right);
-    sem_.pushBack(s);
+    handler_.schedule(Event{0, kSpawnVehicle, O1leste});
 }
 
 void System::run() {
     int event_time = 0;
-    while (handler_.n_of_events() > 0 && event_time <= simulation_time_) {
+    while (event_time <= simulation_time_) {
         event_time = handler_.processNextEvent();
     }
 }

@@ -2,6 +2,7 @@
 #define SEMAPHORE_HPP
 
 #include "Lane.h"
+#include "structures/ArrayList.hpp"
 
 enum SemaphoreState {
     kNorth,
@@ -14,12 +15,7 @@ class Semaphore {
  public:
     Semaphore(int time);
 
-    void setLanes(Lane* north, Lane* east, Lane* south, Lane* west) {
-        lane_.insert(kNorth, north);
-        lane_.insert(kEast, east);
-        lane_.insert(kSouth, south);
-        lane_.insert(kWest, west);
-    }
+    void setLanes(Lane *north, Lane *east, Lane *south, Lane *west);
 
     void changeState();
 
@@ -27,7 +23,7 @@ class Semaphore {
 
  private:
     int time_;
-    ArrayList<Lane*> lane_{4};
+    ArrayList<Lane*> lanes_{4};
     SemaphoreState state_{kNorth};
 };
 

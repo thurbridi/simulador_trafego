@@ -2,6 +2,7 @@
 #include <iostream>
 
 int main() {
+    std::srand(std::time(nullptr));
     int simulation_time, semaphore_time;
     std::cout << "Tempo de simulação desejado em segundos:\n";
     std::cin >> simulation_time;

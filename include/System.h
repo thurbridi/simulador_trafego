@@ -5,6 +5,8 @@
 #include "Event.h"
 #include "EventHandler.h"
 #include "Lane.h"
+#include "SourceLane.h"
+#include "ConsumerLane.h"
 #include "Semaphore.h"
 
 class System {

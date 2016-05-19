@@ -3,7 +3,7 @@
 #include "../include/ConsumerLane.h"
 #include "../include/SourceLane.h"
 
-Semaphore::Semaphore(int time) : time_{time} {}
+Semaphore::Semaphore(int interval) : interval_{interval} {}
 
 void Semaphore::setLanes(Lane *north, Lane *east, Lane *south, Lane *west) {
   lanes_.insert(kNorth, north);
@@ -16,6 +16,6 @@ void Semaphore::changeState() {
   state_ = SemaphoreState((state_ + 1) % 4);
 }
 
-int Semaphore::time() const {
-  return time_;
+int Semaphore::getInterval() const {
+  return interval_;
 }

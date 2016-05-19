@@ -13,16 +13,16 @@ enum SemaphoreState {
 
 class Semaphore {
  public:
-    Semaphore(int time);
+    Semaphore(int interval);
 
     void setLanes(Lane *north, Lane *east, Lane *south, Lane *west);
 
     void changeState();
 
-    int time() const;
+    int getInterval() const;
 
  private:
-    int time_;
+    int interval_;
     ArrayList<Lane*> lanes_{4};
     SemaphoreState state_{kNorth};
 };

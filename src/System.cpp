@@ -1,9 +1,6 @@
-#include <iostream>
-
 #include "../include/System.h"
-#include "../include/Lane.h"
-#include "../include/ConsumerLane.h"
-#include "../include/SourceLane.h"
+
+#include <iostream>
 
 System::System(int simulation_time, int semaphore_time):
     simulation_time_{simulation_time},
@@ -58,8 +55,8 @@ void System::setUp() {
     S2->setLanes(N2norte, L1leste, S2sul, C1oeste);
 
     // Create first events
-    handler_.schedule(Event{0, kChangeSemaphore, (void*) S1});
-    handler_.schedule(Event{0, kChangeSemaphore, (void*) S2});
+    handler_.schedule(Event{semaphore_time_, kChangeSemaphore, (void*) S1});
+    handler_.schedule(Event{semaphore_time_, kChangeSemaphore, (void*) S2});
 
     handler_.schedule(Event{0, kSpawnVehicle, N1sul});
     handler_.schedule(Event{0, kSpawnVehicle, N2sul});
@@ -81,6 +78,5 @@ void System::run() {
 
 void System::showResults() {
     std::cout << "Simulation time: " << simulation_time_ << " seconds\n";
-    std::cout << "Cars that entered the system: " << "\n"; // still needs data
-    std::cout << "Cars that exited the system: " << "\n"; // still needs data
+    handler_.report();
 }

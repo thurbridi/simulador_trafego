@@ -7,31 +7,33 @@
 #include "Vehicle.h"
 
 
-class Lane : protected Queue<Vehicle> {
+class Lane {
  public:
      Lane(int space, int travel_time);
 
-     void setDestinations(Lane* front,
-                          Lane* left,
-                          Lane* right);
+     void setDestinations(std::pair<Lane*, int> front,
+                          std::pair<Lane*, int> left,
+                          std::pair<Lane*, int> right);
+
+     virtual void arrival();
 
      virtual bool moveVehicle();
 
      virtual void insertVehicle(const Vehicle& v);
 
-     Direction generateDirection();
+     virtual Direction generateDirection() const;
 
      int space() const;
 
      int travel_time() const;
 
- private:
+ protected:
+    Queue<Vehicle> in_;
+    Queue<Vehicle> out_;
     int space_;
     int travel_time_;
-    ArrayList<Lane*> lanes_{3};
 
-    ArrayList<int> turn_chance_{3};
-    std::random_device rd_;
+    ArrayList<std::pair<Lane*, int>> lanes_{3};
 };
 
 #endif

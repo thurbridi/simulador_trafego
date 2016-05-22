@@ -19,12 +19,14 @@ class Semaphore {
 
     void changeState();
 
-    int getInterval() const;
+    Lane* freeLane() const;
+
+    int interval() const;
 
  private:
     int interval_;
-    ArrayList<Lane*> lanes_{4};
-    SemaphoreState state_{kNorth};
+    ArrayList<Lane*> lanes_;
+    SemaphoreState state_;
 };
 
 #endif

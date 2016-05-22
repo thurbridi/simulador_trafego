@@ -16,22 +16,23 @@ class EventHandler {
 
     int n_of_events();
 
-    int processNextEvent();
+    void processNextEvent();
 
     void schedule(const Event& e);
 
-    void spawnVehicle(void* lane, int current_time);
+    void spawnVehicle(SourceLane* lane);
 
-    void changeLane(void* semaphore);
+    void changeLane(Semaphore* sem);
 
-    void arrival();
+    void arrival(Lane* lane);
 
-    void changeSemaphore(void *semaphore);
+    void changeSemaphore(Semaphore* semaphore);
 
     void report();
 
  private:
     List<Event> event_list_;
+    Event current_;
     int num_vehicles_entered_,
         num_vehicles_exited_;
 };

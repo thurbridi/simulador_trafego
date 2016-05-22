@@ -8,6 +8,8 @@ class ConsumerLane : public Lane {
  public:
     ConsumerLane(int space, int travel_time);
 
+    virtual bool moveVehicle();
+
  private:
     int vehicle_count_;
 };

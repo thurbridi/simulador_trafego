@@ -6,15 +6,21 @@
 
 class SourceLane : public Lane {
  public:
-     SourceLane(int space, int travel_time, int base_frequency, int variation);
+    SourceLane(int space, int travel_time, int base_frequency, int variation);
 
-     int base_frequency() const;
+    int generateSpawnTime() const;
 
-     int variation() const;
+    int min_time() const;
+
+    int max_time() const;
+    
+    int base_frequency() const;
+
+    int variation() const;
 
  private:
-    int base_frequency_;
-    int variation_;
+    int min_time_;
+    int max_time_;
 };
 
 #endif

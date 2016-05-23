@@ -15,16 +15,18 @@ class System {
 
     ~System();
 
-    void setUp();
+    void setUp(int semaphore_time);
 
     void run();
 
     void showResults();
 
  private:
-    int simulation_time_, semaphore_time_;
-    ArrayList<Lane*> lane_;
+    int simulation_time_;
     ArrayList<Semaphore*> sem_;
+    ArrayList<SourceLane*> source_;
+    ArrayList<Lane*> center_;
+    ArrayList<ConsumerLane*> consumer_;
     EventHandler handler_;
 };
 

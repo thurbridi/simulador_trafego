@@ -1,5 +1,5 @@
-#ifndef EVENT_HANDLER_HPP
-#define EVENT_HANDLER_HPP
+#ifndef EVENT_HANDLER_H
+#define EVENT_HANDLER_H
 
 #include <iostream>
 #include <cstdlib>
@@ -14,27 +14,32 @@ class EventHandler {
  public:
     EventHandler();
 
-    int n_of_events();
-
     void processNextEvent();
 
-    void schedule(const Event& e);
-
-    void spawnVehicle(SourceLane* lane);
-
-    void changeLane(Semaphore* sem);
-
-    void arrival(Lane* lane);
+    void schedule(Event e);
 
     void changeSemaphore(Semaphore* semaphore);
 
-    void report();
+    void spawnVehicle(SourceLane* lane);
+
+    void arrival(BaseLane* lane);
+
+    void changeLane(Semaphore* sem);
+    
+    Event next_event();
+
+    int current_time();
+
+    int generateSize();
+
+    Direction generateDirection(Lane* lane);
+
+    int nextSpawnTime(SourceLane* lane);
 
  private:
     List<Event> event_list_;
     Event current_;
-    int num_vehicles_entered_,
-        num_vehicles_exited_;
+    std::random_device generator_;
 };
 
 #endif

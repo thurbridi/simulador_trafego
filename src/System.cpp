@@ -2,81 +2,95 @@
 
 #include <iostream>
 
-System::System(int simulation_time, int semaphore_time):
-    simulation_time_{simulation_time},
-    semaphore_time_{semaphore_time}
-{}
+System::System(int simulation_time, int semaphore_time)
+    : simulation_time_{simulation_time},
+      sem_{2},
+      source_{6},
+      center_{2},
+      consumer_{6}
+{
+    setUp(semaphore_time);
+}
 
 System::~System() {}
 
-void System::setUp() {
-    // Create lanes
-    SourceLane* N1sul = new SourceLane{500, 30, 20, 5};
-    ConsumerLane* N1norte = new ConsumerLane{500, 30};
-
-    SourceLane* N2sul = new SourceLane{500, 45, 20, 5};
-    ConsumerLane* N2norte = new ConsumerLane{500, 45};
-
-    SourceLane* L1oeste = new SourceLane{400, 48, 10, 2};
-    ConsumerLane* L1leste = new ConsumerLane{400, 48};
-
-    SourceLane* S2norte = new SourceLane{500, 45, 60, 15};
-    ConsumerLane* S2sul = new ConsumerLane{500, 45};
-
-    SourceLane* S1norte = new SourceLane{500, 30, 30, 7};
-    ConsumerLane* S1sul = new ConsumerLane{500, 30};
-
-    SourceLane* O1leste = new SourceLane{2000, 90, 10, 2};
-    ConsumerLane* O1oeste = new ConsumerLane{2000, 90};
-
-    Lane* C1oeste = new Lane{300, 18};
-    Lane* C1leste = new Lane{300, 18};
-
-    // Connect lanes with eachother
-    N1sul->setDestinations(S1sul, C1leste, O1oeste);
-
-    N2sul->setDestinations(S2sul, L1leste, C1oeste);
-
-    L1oeste->setDestinations(C1oeste, S2sul, N2norte);
-
-    S2norte->setDestinations(N2norte, C1oeste, L1leste);
-
-    S1norte->setDestinations(N1norte, O1oeste, C1leste);
-
-    O1leste->setDestinations(C1leste, N1norte, S1sul);
-
-    C1oeste->setDestinations(O1oeste, S1sul, N1norte);
-    C1leste->setDestinations(L1leste, N2norte, S2sul);
-
+void System::setUp(int semaphore_time) {
     // Create Semaphores
-    Semaphore* S1 = new Semaphore{semaphore_time_};
-    S1->setLanes(N1norte, C1leste, S1sul, O1oeste);
-    Semaphore* S2 = new Semaphore{semaphore_time_};
-    S2->setLanes(N2norte, L1leste, S2sul, C1oeste);
+    Semaphore* S1 = new Semaphore{semaphore_time};    // TODO: change this magic constant
+    Semaphore* S2 = new Semaphore{semaphore_time};    // TODO: change this magic constant
+    sem_.pushBack(S1);
+    sem_.pushBack(S2);
+                                          
+    // Create source lanes
+    SourceLane* N1_south = new SourceLane{ 500, 60, 20,  5};
+    SourceLane* N2_south = new SourceLane{ 500, 40, 20,  5};
+    SourceLane* E1_west  = new SourceLane{ 400, 30, 10,  2};
+    SourceLane* S2_north = new SourceLane{ 500, 40, 60, 15};
+    SourceLane* S1_north = new SourceLane{ 500, 60, 30,  7};
+    SourceLane* W1_east  = new SourceLane{2000, 80, 10,  2};
+    source_.pushBack(N1_south);
+    source_.pushBack(N2_south);
+    source_.pushBack(E1_west);
+    source_.pushBack(S2_north);
+    source_.pushBack(S1_north);
+    source_.pushBack(W1_east);
 
-    // Create first events
-    handler_.schedule(Event{semaphore_time_, kChangeSemaphore, (void*) S1});
-    handler_.schedule(Event{semaphore_time_, kChangeSemaphore, (void*) S2});
+    // Create consumer lanes
+    ConsumerLane* N1_north = new ConsumerLane{ 500, 60};
+    ConsumerLane* N2_north = new ConsumerLane{ 500, 40};
+    ConsumerLane* E1_east  = new ConsumerLane{ 400, 30};
+    ConsumerLane* S2_south = new ConsumerLane{ 500, 40};
+    ConsumerLane* S1_south = new ConsumerLane{ 500, 60};
+    ConsumerLane* W1_west  = new ConsumerLane{2000, 80};
+    consumer_.pushBack(N1_north);
+    consumer_.pushBack(N2_north);
+    consumer_.pushBack(E1_east);
+    consumer_.pushBack(S2_south);
+    consumer_.pushBack(S1_south);
+    consumer_.pushBack(W1_west);
 
-    handler_.schedule(Event{0, kSpawnVehicle, N1sul});
-    handler_.schedule(Event{0, kSpawnVehicle, N2sul});
+    // Create center lanes
+    Lane* C1_west = new Lane{300, 60};
+    Lane* C1_east = new Lane{300, 60};
+    center_.pushBack(C1_west);
+    center_.pushBack(C1_east);
 
-    handler_.schedule(Event{0, kSpawnVehicle, L1oeste});
+    // Attach lanes
+    N1_south->setDestinations({S1_south, 10}, { C1_east, 80}, { W1_west, 10});
+    N2_south->setDestinations({S2_south, 30}, { E1_east, 40}, { C1_west, 30});
+    E1_west->setDestinations( { C1_west, 30}, {S2_south, 30}, {N2_north, 40});
+    S2_north->setDestinations({N2_north, 30}, { C1_west, 30}, { E1_east, 40});
+    S1_north->setDestinations({N1_north, 10}, { W1_west, 10}, { C1_east, 80});
+    W1_east->setDestinations( { C1_east, 80}, {N1_north, 10}, {S1_south, 10});
+    C1_west->setDestinations( { W1_west, 40}, {S1_south, 30}, {N1_north, 30});
+    C1_east->setDestinations( { E1_east, 40}, {N2_north, 30}, {S2_south, 30});
 
-    handler_.schedule(Event{0, kSpawnVehicle, S2norte});
-    handler_.schedule(Event{0, kSpawnVehicle, S1norte});
+    // Attach lanes to semaphores
+    S1->setLanes(N1_south, C1_west, S1_north, W1_east);
+    S2->setLanes(N2_south, E1_west, S2_north, C1_east);
 
-    handler_.schedule(Event{0, kSpawnVehicle, O1leste});
+    // Create dummy events
+    for (int i = 0; i < sem_.size(); ++i) {
+        handler_.schedule({semaphore_time, kChangeSemaphore, sem_.at(i)});
+        handler_.schedule({semaphore_time / 5, kChangeLane, sem_.at(i)});
+    }
+
+    for (int i = 0; i < source_.size(); ++i) {
+        SourceLane* source = source_.at(i);
+        handler_.schedule({source->generateSpawnTime(), kSpawnVehicle, source});
+    }
 }
 
 void System::run() {
-    int event_time = 0;
-    while (event_time <= simulation_time_) {
-        event_time = handler_.processNextEvent();
+    while (handler_.next().time() <= simulation_time_) {
+        handler_.processNextEvent();
     }
 }
 
 void System::showResults() {
-    std::cout << "Simulation time: " << simulation_time_ << " seconds\n";
-    handler_.report();
+    int entered = 0;
+    int exited = 0;
+    for (int i = 0; i < source_.size(); ++i) {
+        entered += source_.at(i)->
+    }
 }

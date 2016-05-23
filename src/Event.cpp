@@ -15,7 +15,7 @@ EventType Event::type() const {
     return type_;
 }
 
-void* Event::elementA() const {
+void* Event::source() const {
     return source_;
 }
 

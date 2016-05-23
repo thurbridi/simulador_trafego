@@ -1,9 +1,15 @@
 #include "../include/ConsumerLane.h"
 
-ConsumerLane::ConsumerLane(int space, int travel_time)
-    : Lane::Lane{space, travel_time}, vehicle_count_{0}
-{}
 
-bool ConsumerLane::moveVehicle() {
-    space_ += out_.pop().size();
+bool ConsumerLane::insertVehicle(Vehicle v) {
+    return BaseLane::insertVehicle(Vehicle{v.size, nullptr});
+}
+
+void ConsumerLane::arrival() {
+    in().pop();
+    ++vehicle_count_;
+}
+
+int ConsumerLane::vehicle_count() {
+    return vehicle_count_;
 }

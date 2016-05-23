@@ -1,26 +1,26 @@
 #ifndef SOURCELANE_HPP
 #define SOURCELANE_HPP
 
-#include "Lane.h"
+#include "NonConsumerLane.h"
 
 
-class SourceLane : public Lane {
+class SourceLane : public NonConsumerLane {
  public:
-    SourceLane(int space, int travel_time, int base_frequency, int variation);
+     // constructors:
+     SourceLane(int space, int travel_time, int base_frequency, int variation);
 
-    int generateSpawnTime() const;
+     void spawnVehicle();
 
-    int min_time() const;
-
-    int max_time() const;
-    
-    int base_frequency() const;
-
-    int variation() const;
+     // nonmodifying members:
+     int spawn_interval();
+     int entered();
+     int missed();
 
  private:
-    int min_time_;
-    int max_time_;
+     int base_frequency_;
+     int variation_;
+     int entered_;
+     int missed_;
 };
 
 #endif

@@ -1,25 +1,19 @@
-#include <random>
 #include "../include/Vehicle.h"
-#include "../include/System.h"
 
 
-Vehicle::Vehicle(Direction direction)
-    : direction_{direction}
-{
-    std::random_device rd;
-    std::uniform_int_distribution<int> dist(2,6);
-    size_ = dist(rd);
-}
-
-Vehicle::Vehicle(int size, Direction direction)
-    : size_{size}, direction_{direction}
+Vehicle::Vehicle(int size)
+    : size_{size}, destination_{nullptr}
 {}
 
-int Vehicle::size() const {
+Vehicle::Vehicle(int size, BaseLane* destination)
+    : size_{size}, destination_{destination}
+{}
+
+int Vehicle::size() {
     return size_;
 }
 
-Direction Vehicle::direction() const {
-    return direction_;
+BaseLane* Vehicle::destination() {
+    return destination_;
 }
 

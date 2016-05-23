@@ -1,64 +1,71 @@
 #include "../include/EventHandler.h"
 
-EventHandler::EventHandler(): num_vehicles_entered_{0}, num_vehicles_exited_{0}
-{}
+EventHandler::EventHandler() {}
 
 void EventHandler::processNextEvent() {
     current_ = event_list_.popFront();
+
     switch (current_.type()) {
-    // SPAWN_VEHICLE
-    case 0:
-
-    // CHANGE_LANE
-    case 1:
-
-    // ARRIVAL
-    case 2:
-
-    // CHANGE_SEMAPHORE
-    case 3:
+    case kArrival:
+        arrival((BaseLane*)current_.source());
+        break;
+    
+    case kChangeSemaphore:
+        changeSemaphore((Semaphore*)current_.source());
+        break;
+    
+    case kChangeLane:
+        changeLane((Semaphore*)current_.source());
+        break;
+    
+    case kSpawnVehicle:
+        spawnVehicle((SourceLane*)current_.source());
+        break;
     }
 }
 
-
-void EventHandler::schedule(const Event& event) {
+void EventHandler::schedule(Event event) {
     event_list_.insert(event);
 }
 
-int EventHandler::n_of_events() {
-    return event_list_.size();
+void EventHandler::arrival(BaseLane* lane) {
+    lane->arrival();
 }
 
-void EventHandler::spawnVehicle(SourceLane* lane) {
-    Vehicle v{lane->generateDirection()};
-    if (lane->space() >= v.size()) {
-        lane->insertVehicle(v);
-    }
-    Event next{current_.time() + lane->generateSpawnTime(),
-               kSpawnVehicle,
-               (void*) lane};
-    schedule(next);
+void EventHandler::changeSemaphore(Semaphore* sem) {
+    sem->change_state();
+    int next_change = current_time() + sem->interval();
+    schedule(Event{next_change, kChangeSemaphore, sem});
 }
 
 void EventHandler::changeLane(Semaphore* sem) {
-    Lane* free_lane = sem->freeLane();
-    while (free_lane->moveVehicle()) {
-        // do nothing
+    NonConsumerLane* source = (NonConsumerLane*)sem->free_lane();
+
+    bool changed = true;
+    while (source->ready() && changed) {
+        BaseLane* dest = source->firstVehicle().destination();
+        changed = source->moveVehicle();
+        if (changed) {
+            int arrival_time = current_time() + dest->travel_time();
+            schedule(Event{arrival_time, kArrival, dest});
+        }
     }
-    Event next{current_.time() + sem->interval(), kChangeLane, (void*) sem};
-    schedule(next);
+    int next_try_time = current_time() + 2;
+    schedule(Event{next_try_time, kChangeLane, sem});
 }
 
-void EventHandler::arrival(Lane* v) {
-    v->arrival();
+void EventHandler::spawnVehicle(SourceLane* lane) {
+    lane->spawnVehicle();
+    int arrival_time = current_time() + lane->travel_time();
+    int next_spawn_time = current_time() + lane->spawn_interval();
+    schedule(Event{arrival_time, kArrival, lane});
+    schedule(Event{next_spawn_time, kSpawnVehicle, lane});
 }
 
-
-void EventHandler::changeSemaphore(Semaphore* sem) {
-    sem->changeState();
+Event EventHandler::next_event() {
+    return event_list_.front();
 }
 
-void EventHandler::report() {
-    std::cout << "Cars that entered the system: " << num_vehicles_entered_ << "\n";
-    std::cout << "Cars that exited the system: " << num_vehicles_exited_ << "\n";
+int EventHandler::current_time() {
+    return current_.time();
 }

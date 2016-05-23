@@ -2,10 +2,10 @@
 #define EVENT_H_
 
 enum EventType {
-    kSpawnVehicle,
+    kChangeSemaphore,
     kChangeLane,
     kArrival,
-    kChangeSemaphore
+    kSpawnVehicle
 };
 
 class Event {
@@ -16,7 +16,7 @@ class Event {
 
     EventType type() const;
 
-    void* elementA() const;
+    void* source() const;
 
     bool operator<(const Event& e) const;
 

@@ -1,10 +1,11 @@
 #ifndef VEHICLE_H
 #define VEHICLE_H
 
+
 #include "BaseLane.h"
 
-class BaseLane;
 
+class BaseLane;
 
 class Vehicle {
 public:

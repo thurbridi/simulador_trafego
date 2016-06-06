@@ -29,7 +29,7 @@ void EventHandler::schedule(Event event) {
     event_list_.insert(event);
 }
 
-void EventHandler::arrival(BaseLane* lane) {
+void EventHandler::arrival(BaseLane* lane) const {
     lane->arrival();
 }
 
@@ -64,10 +64,10 @@ void EventHandler::spawnVehicle(SourceLane* lane) {
     schedule(Event{next_spawn_time, kSpawnVehicle, lane});
 }
 
-Event EventHandler::next_event() {
+Event EventHandler::next_event() const {
     return event_list_.front();
 }
 
-int EventHandler::current_time() {
+int EventHandler::current_time() const {
     return current_.time();
 }

@@ -1,41 +1,35 @@
 #ifndef EVENT_HANDLER_H
 #define EVENT_HANDLER_H
 
-#include <iostream>
-#include <cstdlib>
-#include <ctime>
+
 #include "structures/List.hpp"
 #include "Event.h"
-#include "ConsumerLane.h"
-#include "SourceLane.h"
+#include "BaseLane.h"
 #include "Semaphore.h"
+#include "SourceLane.h"
 
 
 class EventHandler {
  public:
     EventHandler();
 
+    void changeLane(Semaphore* sem);
+
+    void changeSemaphore(Semaphore* semaphore);
+
     void processNextEvent();
 
     void schedule(Event e);
 
-    void changeSemaphore(Semaphore* semaphore);
-
     void spawnVehicle(SourceLane* lane);
 
-    void arrival(BaseLane* lane);
-
-    void changeLane(Semaphore* sem);
     
-    Event next_event();
 
-    int current_time();
+    void arrival(BaseLane* lane) const;
 
-    int generateSize();
+    int current_time() const;
 
-    Direction generateDirection(BaseLane* lane);
-
-    int nextSpawnTime(SourceLane* lane);
+    Event next_event() const;
 
  private:
     List<Event> event_list_;

@@ -1,6 +1,7 @@
 #ifndef SEMAPHORE_H
 #define SEMAPHORE_H
 
+
 #include "structures/ArrayList.hpp"
 #include "BaseLane.h"
 
@@ -26,8 +27,8 @@ class Semaphore {
 
  private:
     int interval_;
-    ArrayList<BaseLane*> lane_list_;
     SemaphoreState state_;
+    ArrayList<BaseLane*> lane_list_;
 };
 
 #endif

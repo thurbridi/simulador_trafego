@@ -2,7 +2,7 @@
 
 
 Semaphore::Semaphore(int interval)
-    : interval_{interval}, lane_list_{4}, state_{kNorth}
+    : interval_{interval}, state_{kNorth}, lane_list_{4}
 {}
 
 void Semaphore::setLanes(BaseLane *north, BaseLane *east, BaseLane *south, BaseLane *west) {

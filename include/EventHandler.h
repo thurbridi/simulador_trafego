@@ -4,11 +4,12 @@
 #include <iostream>
 #include <cstdlib>
 #include <ctime>
+#include "structures/List.hpp"
 #include "Event.h"
-#include "Lane.h"
+#include "ConsumerLane.h"
 #include "SourceLane.h"
 #include "Semaphore.h"
-#include "structures/List.hpp"
+
 
 class EventHandler {
  public:
@@ -32,7 +33,7 @@ class EventHandler {
 
     int generateSize();
 
-    Direction generateDirection(Lane* lane);
+    Direction generateDirection(BaseLane* lane);
 
     int nextSpawnTime(SourceLane* lane);
 

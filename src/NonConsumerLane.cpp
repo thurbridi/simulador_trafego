@@ -15,7 +15,9 @@ void NonConsumerLane::setDestinations(std::pair<BaseLane*, int> front,
 }
 
 void NonConsumerLane::arrival() {
-    out_.push(in().pop());
+	if (!out_.empty()) {
+		out_.push(in().pop());
+	}
 }
 
 bool NonConsumerLane::moveVehicle() {
@@ -27,6 +29,7 @@ bool NonConsumerLane::moveVehicle() {
     if (dest->space() < v.size()) {
         return false;
     }
+    set_space(space() - v.size());
     dest->insertVehicle(out_.pop());
     return true;
 }

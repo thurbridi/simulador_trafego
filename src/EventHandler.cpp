@@ -1,5 +1,6 @@
 #include "../include/EventHandler.h"
 
+
 EventHandler::EventHandler() {}
 
 void EventHandler::processNextEvent() {
@@ -9,15 +10,15 @@ void EventHandler::processNextEvent() {
     case kArrival:
         arrival((BaseLane*)current_.source());
         break;
-    
+
     case kChangeSemaphore:
         changeSemaphore((Semaphore*)current_.source());
         break;
-    
+
     case kChangeLane:
         changeLane((Semaphore*)current_.source());
         break;
-    
+
     case kSpawnVehicle:
         spawnVehicle((SourceLane*)current_.source());
         break;
@@ -33,7 +34,7 @@ void EventHandler::arrival(BaseLane* lane) {
 }
 
 void EventHandler::changeSemaphore(Semaphore* sem) {
-    sem->change_state();
+    sem->changeState();
     int next_change = current_time() + sem->interval();
     schedule(Event{next_change, kChangeSemaphore, sem});
 }
@@ -55,10 +56,11 @@ void EventHandler::changeLane(Semaphore* sem) {
 }
 
 void EventHandler::spawnVehicle(SourceLane* lane) {
-    lane->spawnVehicle();
-    int arrival_time = current_time() + lane->travel_time();
+    if (lane->spawnVehicle()) {
+    	int arrival_time = current_time() + lane->travel_time();
+    	schedule(Event{arrival_time, kArrival, lane});
+    }
     int next_spawn_time = current_time() + lane->spawn_interval();
-    schedule(Event{arrival_time, kArrival, lane});
     schedule(Event{next_spawn_time, kSpawnVehicle, lane});
 }
 

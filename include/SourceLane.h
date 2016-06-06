@@ -1,5 +1,5 @@
-#ifndef SOURCELANE_HPP
-#define SOURCELANE_HPP
+#ifndef SOURCE_LANE_H
+#define SOURCE_LANE_H
 
 #include "NonConsumerLane.h"
 
@@ -9,7 +9,7 @@ class SourceLane : public NonConsumerLane {
      // constructors:
      SourceLane(int space, int travel_time, int base_frequency, int variation);
 
-     void spawnVehicle();
+     bool spawnVehicle();
 
      // nonmodifying members:
      int spawn_interval();

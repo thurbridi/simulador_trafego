@@ -2,5 +2,5 @@
 
 
 bool CenterLane::insertVehicle(Vehicle v) {
-    return BaseLane::insertVehicle({v.size, destination()});
+    return BaseLane::insertVehicle({v.size(), destination()});
 }

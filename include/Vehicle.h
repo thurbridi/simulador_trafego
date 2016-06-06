@@ -3,6 +3,7 @@
 
 #include "BaseLane.h"
 
+class BaseLane;
 
 class Vehicle {
 public:

@@ -10,12 +10,13 @@ SourceLane::SourceLane(int space,
       variation_{variation}
 {}
 
-void SourceLane::spawnVehicle() {
-    if (insertVehicle(Vehicle{generate(5, 9)})) {
+bool SourceLane::spawnVehicle() {
+    if (insertVehicle(Vehicle{generate(5, 9), destination()})) {
         ++entered_;
-    } else {
-        ++missed_;
+        return true;
     }
+    ++missed_;
+    return false;
 }
 
 int SourceLane::spawn_interval() {

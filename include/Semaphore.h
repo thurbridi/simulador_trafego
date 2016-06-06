@@ -16,9 +16,9 @@ class Semaphore {
  public:
     Semaphore(int interval);
 
-    void set_lanes(BaseLane *north, BaseLane *east, BaseLane *south, BaseLane *west);
+    void setLanes(BaseLane *north, BaseLane *east, BaseLane *south, BaseLane *west);
 
-    void change_state();
+    void changeState();
 
     BaseLane* free_lane();
 

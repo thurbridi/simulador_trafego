@@ -10,6 +10,8 @@ enum EventType {
 
 class Event {
  public:
+	Event();
+
     Event(int time, EventType type, void* source);
 
     int time() const;

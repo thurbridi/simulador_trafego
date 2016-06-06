@@ -9,9 +9,18 @@ BaseLane::BaseLane(int space, int travel_time)
 bool BaseLane::insertVehicle(Vehicle v) {
     if (v.size() <= space()) {
         in().push(v);
+        space_ -= v.size();
         return true;
     }
     return false;
+}
+
+int BaseLane::size() {
+	return in_.size();
+}
+
+void BaseLane::set_space(int space) {
+	space_ = space;
 }
 
 int BaseLane::space() {

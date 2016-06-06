@@ -1,7 +1,7 @@
 // Copyright [2016] <Filipe Borba>
 
-#ifndef QUEUE_HPP_
-#define QUEUE_HPP_
+#ifndef QUEUE_HPP
+#define QUEUE_HPP
 
 #include "List.hpp"
 
@@ -21,9 +21,9 @@ class Queue : protected List<T> {
 
     T front() { return List<T>::front(); }
 
-    bool empty() const { List<T>::empty(); }
+    bool empty() const { return List<T>::empty(); }
 
-    int size() const { List<T>::size(); }
+    int size() const { return List<T>::size(); }
 };
 
 #endif

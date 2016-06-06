@@ -2,14 +2,15 @@
 
 
 bool ConsumerLane::insertVehicle(Vehicle v) {
-    return BaseLane::insertVehicle(Vehicle{v.size, nullptr});
+    return BaseLane::insertVehicle(Vehicle{v.size(), nullptr});
 }
 
 void ConsumerLane::arrival() {
-    in().pop();
-    ++vehicle_count_;
+	int new_space = space() + in().pop().size();
+	set_space(new_space);
+    ++exited_;
 }
 
-int ConsumerLane::vehicle_count() {
-    return vehicle_count_;
+int ConsumerLane::exited() {
+    return exited_;
 }

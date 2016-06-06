@@ -1,9 +1,10 @@
-#ifndef BASELANE_H_
-#define BASELANE_H_
+#ifndef BASELANE_H
+#define BASELANE_H
 
 #include "structures/Queue.hpp"
 #include "Vehicle.h"
 
+class Vehicle;
 
 class BaseLane {
  public:
@@ -15,6 +16,8 @@ class BaseLane {
      virtual void arrival() = 0;
      
      // nonmodifying members:
+     int size();
+     void set_space(int space);
      int space();
      int travel_time();
 

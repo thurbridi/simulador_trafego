@@ -84,7 +84,7 @@ class List {
         if (empty()) {
             throw Empty{};
         }
-        return head()->data();
+        return head()->next()->data();
     }
 
     T back() const {
@@ -119,9 +119,8 @@ class List {
         position->set_next(link);
         if (link->next()) {
             link->next()->set_prev(link);
-        }
-        if (position == tail_) {
-            tail_ = tail_->next();
+        } else {
+            tail_ = link;
         }
         ++size_;
     }
@@ -130,9 +129,8 @@ class List {
         position->prev()->set_next(position->next());
         if (position->next()) {
             position->next()->set_prev(position->prev());
-        }
-        if (position == tail_) {
-            tail_ = tail_->prev();
+        } else {
+            tail_ = position->prev();
         }
         --size_;
         T value = position->data();

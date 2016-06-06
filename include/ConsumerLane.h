@@ -14,10 +14,10 @@ class ConsumerLane : public BaseLane {
     virtual void arrival();
 
     // nonmodifying members:
-    int vehicle_count();
+    int exited();
 
  private:
-    int vehicle_count_;
+    int exited_;
 };
 
 #endif

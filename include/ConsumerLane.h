@@ -1,20 +1,26 @@
-#ifndef CONSUMERLANE_HPP
-#define CONSUMERLANE_HPP
+#ifndef CONSUMER_LANE_H
+#define CONSUMER_LANE_H
 
 #include "BaseLane.h"
 
 
 class ConsumerLane : public BaseLane {
  public:
-    // constructors:
-    using BaseLane::BaseLane;
+    ConsumerLane(int space, int travel_time);
 
-    // modifying members:
-    bool insertVehicle(Vehicle v);
-    virtual void arrival();
+    ~ConsumerLane();
 
-    // nonmodifying members:
-    int exited();
+
+
+    void arrival() override;
+
+ 	bool insertVehicle(Vehicle v);
+
+
+
+    int exited() const;
+
+    int size() const override;
 
  private:
     int exited_;

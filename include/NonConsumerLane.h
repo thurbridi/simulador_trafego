@@ -14,23 +14,34 @@ enum Direction {
 
 class NonConsumerLane : public BaseLane {
  public:
-     // constructors:
      NonConsumerLane(int space, int travel_time);
 
-     // modifying members:
+     ~NonConsumerLane();
+
+
+
+     void arrival() override;
+
+     bool moveVehicle();
+
      void setDestinations(std::pair<BaseLane*, int> front,
                           std::pair<BaseLane*, int> left,
                           std::pair<BaseLane*, int> right);
-     virtual void arrival();
-     bool moveVehicle();
 
-     // nonmodifying members:
-     Vehicle firstVehicle();
-     bool ready();
+
+
+     const Vehicle& first_vehicle() const;
+
+     bool ready() const;
+
+     int size() const override;
 
  protected:
      BaseLane* destination();
+
      int generate(int low, int high);
+
+     const Queue<Vehicle>& out() const;
      Queue<Vehicle>& out();
      
  private:

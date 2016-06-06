@@ -1,33 +1,44 @@
-#ifndef BASELANE_H
-#define BASELANE_H
+#ifndef BASE_LANE_H
+#define BASE_LANE_H
 
 #include "structures/Queue.hpp"
 #include "Vehicle.h"
 
-class Vehicle;
+class Vehicle;    // forward declaration
+
 
 class BaseLane {
  public:
-     // constructors:
-     BaseLane(int space, int travel_time);
+	 BaseLane(int space, int travel_time);
 
-     // modifying members:
-     bool insertVehicle(Vehicle v);
+     virtual ~BaseLane();
+
+
+
      virtual void arrival() = 0;
+
+     bool insertVehicle(Vehicle v);
      
-     // nonmodifying members:
-     int size();
-     void set_space(int space);
-     int space();
-     int travel_time();
+     void decrease_space(int space);
+
+     void increase_space(int space);
+
+
+
+     virtual int size() const = 0;
+
+     int space() const;
+
+     int travel_time() const;
 
  protected:
+     const Queue<Vehicle>& in() const;
      Queue<Vehicle>& in();
      
  private:
-    int space_;
-    int travel_time_;
-    Queue<Vehicle> in_;
+     int space_;
+     int travel_time_;
+     Queue<Vehicle> in_;
 };
 
 #endif

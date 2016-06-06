@@ -6,16 +6,12 @@ NonConsumerLane::NonConsumerLane(int space, int travel_time)
       destination_list_{3}
 {}
 
-void NonConsumerLane::setDestinations(std::pair<BaseLane*, int> front,
-                                      std::pair<BaseLane*, int> left,
-                                      std::pair<BaseLane*, int> right) {
-    destination_list_.insert(kFront, front);
-    destination_list_.insert(kLeft, left);
-    destination_list_.insert(kRight, right);
-}
+NonConsumerLane::~NonConsumerLane() {}
+
+
 
 void NonConsumerLane::arrival() {
-	if (!out_.empty()) {
+	if (!in().empty()) {
 		out_.push(in().pop());
 	}
 }
@@ -29,12 +25,28 @@ bool NonConsumerLane::moveVehicle() {
     if (dest->space() < v.size()) {
         return false;
     }
-    set_space(space() - v.size());
+    decrease_space(v.size());
     dest->insertVehicle(out_.pop());
     return true;
 }
 
-Vehicle NonConsumerLane::firstVehicle() {
+void NonConsumerLane::setDestinations(std::pair<BaseLane*, int> front,
+                                      std::pair<BaseLane*, int> left,
+                                      std::pair<BaseLane*, int> right) {
+    destination_list_.insert(kFront, front);
+    destination_list_.insert(kLeft, left);
+    destination_list_.insert(kRight, right);
+}
+
+
+
+
+
+int NonConsumerLane::size() {
+	return BaseLane::size() + out_.size();
+}
+
+const Vehicle& NonConsumerLane::first_vehicle() const {
     return out_.front();
 }
 

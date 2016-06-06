@@ -40,7 +40,6 @@ class EventHandler {
  private:
     List<Event> event_list_;
     Event current_;
-    std::random_device generator_;
 };
 
 #endif

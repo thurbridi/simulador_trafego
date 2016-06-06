@@ -1,7 +1,11 @@
 #include "../include/Event.h"
 
 
-Event::Event() {}
+Event::Event()
+	: time_{0},
+	  type_{(EventType) 0},
+	  source_{nullptr}
+{}
 
 Event::Event(int time, EventType type, void* source)
     : time_{time},

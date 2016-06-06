@@ -8,23 +8,19 @@ ConsumerLane::ConsumerLane(int space, int travel_time)
 
 ConsumerLane::~ConsumerLane() {}
 
-
-
 void ConsumerLane::arrival() {
 	increase_space(in().pop().size());
     ++exited_;
 }
 
-bool ConsumerLane::insertVehicle(Vehicle v) {
+bool ConsumerLane::insertVehicle(const Vehicle& v) {
     return BaseLane::insertVehicle(Vehicle{v.size(), nullptr});
 }
-
-
 
 int ConsumerLane::exited() const {
     return exited_;
 }
 
 int ConsumerLane::size() const {
-	return BaseLane::in().size();
+	return in().size();
 }

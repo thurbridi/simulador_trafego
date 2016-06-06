@@ -1,14 +1,16 @@
-#ifndef CENTERLANE_H_
-#define CENTERLANE_H_
+#ifndef CENTER_LANE_H
+#define CENTER_LANE_H
+
 
 #include "NonConsumerLane.h"
+#include "Vehicle.h"
 
 
 class CenterLane : public NonConsumerLane {
  public:
     using NonConsumerLane::NonConsumerLane;
 
-    bool insertVehicle(Vehicle v);
+    bool insertVehicle(const Vehicle& v);
 };
 
 #endif

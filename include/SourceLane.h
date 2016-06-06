@@ -6,15 +6,15 @@
 
 class SourceLane : public NonConsumerLane {
  public:
-     // constructors:
      SourceLane(int space, int travel_time, int base_frequency, int variation);
 
      bool spawnVehicle();
 
-     // nonmodifying members:
      int spawn_interval();
-     int entered();
-     int missed();
+
+     int entered() const;
+
+     int missed() const;
 
  private:
      int base_frequency_;

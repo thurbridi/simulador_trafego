@@ -44,7 +44,7 @@ void EventHandler::changeLane(Semaphore* sem) {
 
     bool changed = true;
     while (source->ready() && changed) {
-        BaseLane* dest = source->firstVehicle().destination();
+        BaseLane* dest = source->first_vehicle().destination();
         changed = source->moveVehicle();
         if (changed) {
             int arrival_time = current_time() + dest->travel_time();

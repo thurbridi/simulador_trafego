@@ -1,5 +1,5 @@
-#ifndef SEMAPHORE_HPP
-#define SEMAPHORE_HPP
+#ifndef SEMAPHORE_H
+#define SEMAPHORE_H
 
 #include "structures/ArrayList.hpp"
 #include "BaseLane.h"

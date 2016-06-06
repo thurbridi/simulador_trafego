@@ -1,7 +1,9 @@
 #ifndef CONSUMER_LANE_H
 #define CONSUMER_LANE_H
 
+
 #include "BaseLane.h"
+#include "Vehicle.h"
 
 
 class ConsumerLane : public BaseLane {
@@ -14,7 +16,7 @@ class ConsumerLane : public BaseLane {
 
     void arrival() override;
 
- 	bool insertVehicle(Vehicle v);
+ 	bool insertVehicle(const Vehicle& v);
 
 
 

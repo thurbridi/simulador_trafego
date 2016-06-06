@@ -1,11 +1,12 @@
 #ifndef BASE_LANE_H
 #define BASE_LANE_H
 
+
 #include "structures/Queue.hpp"
 #include "Vehicle.h"
 
-class Vehicle;    // forward declaration
 
+class Vehicle;    // forward declaration
 
 class BaseLane {
  public:
@@ -17,7 +18,7 @@ class BaseLane {
 
      virtual void arrival() = 0;
 
-     bool insertVehicle(Vehicle v);
+     virtual bool insertVehicle(const Vehicle& v);
      
      void decrease_space(int space);
 
@@ -32,12 +33,15 @@ class BaseLane {
      int travel_time() const;
 
  protected:
-     const Queue<Vehicle>& in() const;
      Queue<Vehicle>& in();
+
+     const Queue<Vehicle>& in() const;
      
  private:
      int space_;
+
      int travel_time_;
+
      Queue<Vehicle> in_;
 };
 

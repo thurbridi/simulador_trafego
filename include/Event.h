@@ -1,5 +1,6 @@
-#ifndef EVENT_H_
-#define EVENT_H_
+#ifndef EVENT_H
+#define EVENT_H
+
 
 enum EventType {
     kChangeSemaphore,

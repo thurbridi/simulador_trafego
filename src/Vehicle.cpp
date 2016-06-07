@@ -9,11 +9,11 @@ Vehicle::Vehicle(int size, BaseLane* destination)
     : size_{size}, destination_{destination}
 {}
 
-int Vehicle::size() {
+int Vehicle::size() const {
     return size_;
 }
 
-BaseLane* Vehicle::destination() {
+BaseLane* Vehicle::destination() const {
     return destination_;
 }
 

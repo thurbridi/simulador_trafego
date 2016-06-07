@@ -1,7 +1,9 @@
-#ifndef VEHICLE_H_
-#define VEHICLE_H_
+#ifndef VEHICLE_H
+#define VEHICLE_H
+
 
 #include "BaseLane.h"
+
 
 class BaseLane;
 
@@ -10,11 +12,12 @@ public:
     Vehicle(int size);
     Vehicle(int size, BaseLane* direction);
 
-    int size();
-    BaseLane* destination();
+    int size() const;
+    BaseLane* destination() const;
 
 private:
     int size_;
+
     BaseLane* destination_;
 };
 

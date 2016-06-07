@@ -7,7 +7,9 @@ SourceLane::SourceLane(int space,
                        int variation)
     : NonConsumerLane{space, travel_time},
       base_frequency_{base_frequency},
-      variation_{variation}
+      variation_{variation},
+	  entered_{0},
+	  missed_{0}
 {}
 
 bool SourceLane::spawnVehicle() {
@@ -23,10 +25,10 @@ int SourceLane::spawn_interval() {
     return base_frequency_ + generate(-variation_, variation_);
 }
 
-int SourceLane::entered() {
+int SourceLane::entered() const {
     return entered_;
 }
 
-int SourceLane::missed() {
+int SourceLane::missed() const {
     return missed_;
 }

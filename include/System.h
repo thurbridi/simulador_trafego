@@ -1,14 +1,13 @@
 #ifndef SYSTEM_H
 #define SYSTEM_H
 
+
 #include <fstream>
-#include <utility>
 #include "structures/ArrayList.hpp"
-#include "EventHandler.h"
-#include "SourceLane.h"
 #include "CenterLane.h"
 #include "ConsumerLane.h"
-#include "Semaphore.h"
+#include "EventHandler.h"
+#include "SourceLane.h"
 
 
 class System {

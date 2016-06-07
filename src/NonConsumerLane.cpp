@@ -3,12 +3,11 @@
 
 NonConsumerLane::NonConsumerLane(int space, int travel_time)
     : BaseLane{space, travel_time},
+	  out_{},
       destination_list_{3}
 {}
 
 NonConsumerLane::~NonConsumerLane() {}
-
-
 
 void NonConsumerLane::arrival() {
 	if (!in().empty()) {
@@ -30,31 +29,31 @@ bool NonConsumerLane::moveVehicle() {
     return true;
 }
 
-void NonConsumerLane::setDestinations(std::pair<BaseLane*, int> front,
-                                      std::pair<BaseLane*, int> left,
-                                      std::pair<BaseLane*, int> right) {
+void NonConsumerLane::set_destinations(std::pair<BaseLane*, int> front,
+                                       std::pair<BaseLane*, int> left,
+                                       std::pair<BaseLane*, int> right) {
     destination_list_.insert(kFront, front);
     destination_list_.insert(kLeft, left);
     destination_list_.insert(kRight, right);
 }
 
-
-
-
-
-int NonConsumerLane::size() {
-	return BaseLane::size() + out_.size();
-}
-
-const Vehicle& NonConsumerLane::first_vehicle() const {
+Vehicle NonConsumerLane::first_vehicle() const {
     return out_.front();
 }
 
-bool NonConsumerLane::ready() {
+bool NonConsumerLane::ready() const {
     return !out_.empty();
 }
 
-BaseLane* NonConsumerLane::destination() {
+int NonConsumerLane::size() const {
+	return in().size() + out_.size();
+}
+
+Queue<Vehicle>& NonConsumerLane::out() {
+    return out_;
+}
+
+BaseLane* NonConsumerLane::destination() const {
     int chance = generate(0, 99);
     if (chance < destination_list_.at(kFront).second) {
         return destination_list_.at(kFront).first;
@@ -65,10 +64,11 @@ BaseLane* NonConsumerLane::destination() {
     return destination_list_.at(kRight).first;
 }
 
-int NonConsumerLane::generate(int low, int high) {
-    return low + generator_() % (high - low);
+int NonConsumerLane::generate(int low, int high) const {
+	std::random_device generator;
+    return low + generator() % (high - low);
 }
 
-Queue<Vehicle>& NonConsumerLane::out() {
+const Queue<Vehicle>& NonConsumerLane::out() const {
     return out_;
 }

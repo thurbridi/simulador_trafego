@@ -57,14 +57,14 @@ void System::setUp() {
 
     // Attach lanes
     using dest = std::pair<BaseLane*, int>;
-    N1_south->setDestinations(dest{S1_south, 10}, dest{ C1_east, 80}, dest{ W1_west, 10});
-    N2_south->setDestinations(dest{S2_south, 30}, dest{ E1_east, 40}, dest{ C1_west, 30});
-    E1_west->setDestinations( dest{ C1_west, 30}, dest{S2_south, 30}, dest{N2_north, 40});
-    S2_north->setDestinations(dest{N2_north, 30}, dest{ C1_west, 30}, dest{ E1_east, 40});
-    S1_north->setDestinations(dest{N1_north, 10}, dest{ W1_west, 10}, dest{ C1_east, 80});
-    W1_east->setDestinations( dest{ C1_east, 80}, dest{N1_north, 10}, dest{S1_south, 10});
-    C1_west->setDestinations( dest{ W1_west, 40}, dest{S1_south, 30}, dest{N1_north, 30});
-    C1_east->setDestinations( dest{ E1_east, 40}, dest{N2_north, 30}, dest{S2_south, 30});
+    N1_south->set_destinations(dest{S1_south, 10}, dest{ C1_east, 80}, dest{ W1_west, 10});
+    N2_south->set_destinations(dest{S2_south, 30}, dest{ E1_east, 40}, dest{ C1_west, 30});
+    E1_west->set_destinations( dest{ C1_west, 30}, dest{S2_south, 30}, dest{N2_north, 40});
+    S2_north->set_destinations(dest{N2_north, 30}, dest{ C1_west, 30}, dest{ E1_east, 40});
+    S1_north->set_destinations(dest{N1_north, 10}, dest{ W1_west, 10}, dest{ C1_east, 80});
+    W1_east->set_destinations( dest{ C1_east, 80}, dest{N1_north, 10}, dest{S1_south, 10});
+    C1_west->set_destinations( dest{ W1_west, 40}, dest{S1_south, 30}, dest{N1_north, 30});
+    C1_east->set_destinations( dest{ E1_east, 40}, dest{N2_north, 30}, dest{S2_south, 30});
 
     // Attach lanes to semaphores
     S1->setLanes(N1_south, C1_west, S1_north, W1_east);

@@ -40,9 +40,9 @@ class Semaphore {
     void changeState();
 
     /**
-     * @brief      { function_description }
+     * @brief      Retorna qual a pista que está com o sinal aberto
      *
-     * @return     { description_of_the_return_value }
+     * @return     Pista com o sinal aberto
      */
     BaseLane* free_lane();
 

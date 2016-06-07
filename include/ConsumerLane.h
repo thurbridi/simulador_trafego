@@ -1,10 +1,8 @@
 #ifndef CONSUMER_LANE_H
 #define CONSUMER_LANE_H
 
-
 #include "BaseLane.h"
 #include "Vehicle.h"
-
 
 /**
  * @brief      Descreve a pista sumidouro da simulação
@@ -25,7 +23,7 @@ class ConsumerLane : public BaseLane {
     ~ConsumerLane();
 
     /**
-     * @brief      { function_description }
+     * @brief      Remove os veículos da pista e da simulação
      */
     void arrival() override;
 
@@ -46,9 +44,9 @@ class ConsumerLane : public BaseLane {
     int exited() const;
 
     /**
-     * @brief      { function_description }
+     * @brief      Retorna o número de carros que estão atualmente na pista
      *
-     * @return     { description_of_the_return_value }
+     * @return     Número de carros atualmente na pista
      */
     int size() const override;
 

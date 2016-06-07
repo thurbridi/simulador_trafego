@@ -79,16 +79,16 @@ class BaseLane {
 
  protected:
     /**
-     * @brief      { function_description }
+     * @brief      Retorna a fila de veículos que estão percorrendo a pista
      *
-     * @return     { description_of_the_return_value }
+     * @return     Fila de carros que estão percorrendo a pista
      */
     Queue<Vehicle>& in();
 
     /**
-     * @brief      { function_description }
+     * @brief      Retorna a fila de veículos que estão percorrendo a pista
      *
-     * @return     { description_of_the_return_value }
+     * @return     Fila de carros que estão percorrendo a pista
      */
     const Queue<Vehicle>& in() const;
 

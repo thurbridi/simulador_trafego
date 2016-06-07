@@ -24,7 +24,7 @@ bool NonConsumerLane::moveVehicle() {
     if (dest->space() < v.size()) {
         return false;
     }
-    decrease_space(v.size());
+    increase_space(v.size());
     dest->insertVehicle(out_.pop());
     return true;
 }

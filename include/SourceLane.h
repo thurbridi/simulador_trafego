@@ -6,6 +6,9 @@
 
 /**
  * @brief      Descreve a pista fonte na simulação
+ *
+ * @details    Herda de NonConsumerLane pois ela não elimina carros da simulação
+ *             quando chegam no final da pista
  */
 class SourceLane : public NonConsumerLane {
  public:

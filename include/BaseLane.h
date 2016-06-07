@@ -1,48 +1,103 @@
 #ifndef BASE_LANE_H
 #define BASE_LANE_H
 
-
 #include "structures/Queue.hpp"
 #include "Vehicle.h"
 
-
 class Vehicle;    // forward declaration
 
+/**
+ * @brief      Classe abstrata para as pistas
+ *
+ * @details    Essa classe é uma classe abstrata para as pistas da simulação,
+ *             herda da estrutura de dados fila pois uma pista é basicamente uma
+ *             fila de veículos
+ */
 class BaseLane {
  public:
-	 BaseLane(int space, int travel_time);
+    /**
+     * @brief      Construtor
+     *
+     * @param[in]  space        Tamanho da pista em metros
+     * @param[in]  travel_time  Tempo de percorrimento da pista em segundos
+     */
+    BaseLane(int space, int travel_time);
 
-     virtual ~BaseLane();
+    /**
+     * @brief      Destrutor
+     */
+    virtual ~BaseLane();
 
+    /**
+     * @brief      { function_description }
+     */
+    virtual void arrival() = 0;
 
+    /**
+     * @brief      Insere um veículo na pista caso haja espaço disponível
+     *
+     * @param[in]  v     Veículo que será inserido
+     *
+     * @return     Retorna true se inseriu com sucesso, false caso contrário
+     */
+    virtual bool insertVehicle(const Vehicle& v);
 
-     virtual void arrival() = 0;
+    /**
+     * @brief      Decrementa o tamanho da pista (espaço disponível)
+     *
+     * @param[in]  space  Espaço que será decrementado
+     */
+    void decrease_space(int space);
 
-     virtual bool insertVehicle(const Vehicle& v);
-     
-     void decrease_space(int space);
+    /**
+     * @brief      Incrementa o tamanho da pista (espaço disponível)
+     *
+     * @param[in]  space  Espaço que será incrementado
+     */
+    void increase_space(int space);
 
-     void increase_space(int space);
+    /**
+     * @brief      { function_description }
+     *
+     * @return     { description_of_the_return_value }
+     */
+    virtual int size() const = 0;
 
+    /**
+     * @brief      Retorna o espaço disponível da pista
+     *
+     * @return     Espaço disponívem em metros
+     */
+    int space() const;
 
-
-     virtual int size() const = 0;
-
-     int space() const;
-
-     int travel_time() const;
+    /**
+     * @brief      Retorna o tempo de percorrimento da pista
+     *
+     * @return     Tempo de percorrimento da pista em segundos
+     */
+    int travel_time() const;
 
  protected:
-     Queue<Vehicle>& in();
+    /**
+     * @brief      { function_description }
+     *
+     * @return     { description_of_the_return_value }
+     */
+    Queue<Vehicle>& in();
 
-     const Queue<Vehicle>& in() const;
-     
+    /**
+     * @brief      { function_description }
+     *
+     * @return     { description_of_the_return_value }
+     */
+    const Queue<Vehicle>& in() const;
+
  private:
-     int space_;
+    int space_;
 
-     int travel_time_;
+    int travel_time_;
 
-     Queue<Vehicle> in_;
+    Queue<Vehicle> in_;
 };
 
 #endif

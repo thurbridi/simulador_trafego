@@ -1,12 +1,10 @@
 #ifndef NON_CONSUMER_LANE_H
 #define NON_CONSUMER_LANE_H
 
-
 #include <random>
 #include "structures/ArrayList.hpp"
 #include "BaseLane.h"
 #include "Vehicle.h"
-
 
 enum Direction {
     kFront,
@@ -20,8 +18,6 @@ class NonConsumerLane : public BaseLane {
 
      ~NonConsumerLane();
 
-
-
      void arrival() override;
 
      bool moveVehicle();
@@ -29,8 +25,6 @@ class NonConsumerLane : public BaseLane {
      void set_destinations(std::pair<BaseLane*, int> front,
                            std::pair<BaseLane*, int> left,
                            std::pair<BaseLane*, int> right);
-
-
 
      Vehicle first_vehicle() const;
 

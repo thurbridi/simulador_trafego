@@ -1,4 +1,4 @@
-f#ifndef NON_CONSUMER_LANE_H
+#ifndef NON_CONSUMER_LANE_H
 #define NON_CONSUMER_LANE_H
 
 #include <random>

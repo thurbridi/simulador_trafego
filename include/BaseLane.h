@@ -29,7 +29,7 @@ class BaseLane {
     virtual ~BaseLane();
 
     /**
-     * @brief      { function_description }
+     * @brief      Método puramente virtual
      */
     virtual void arrival() = 0;
 

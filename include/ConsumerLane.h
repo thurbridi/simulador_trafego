@@ -51,7 +51,7 @@ class ConsumerLane : public BaseLane {
     int size() const override;
 
  private:
-    int exited_;
+    int exited_; //! < Total de carros que sairam da pista
 };
 
 #endif

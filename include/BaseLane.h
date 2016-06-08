@@ -57,9 +57,9 @@ class BaseLane {
     void increase_space(int space);
 
     /**
-     * @brief      { function_description }
+     * @brief      Retorna o número de veículos na pista atualmente
      *
-     * @return     { description_of_the_return_value }
+     * @return     Número de veículos na pista
      */
     virtual int size() const = 0;
 
@@ -93,11 +93,11 @@ class BaseLane {
     const Queue<Vehicle>& in() const;
 
  private:
-    int space_;
+    int space_; //! < Tamanho da pista / espaço livre (em metros)
 
-    int travel_time_;
+    int travel_time_; //! < Tempo de percorrimento da pista (em segundos)
 
-    Queue<Vehicle> in_;
+    Queue<Vehicle> in_; //! < Fila de carros que estão percorrendo a pista
 };
 
 #endif

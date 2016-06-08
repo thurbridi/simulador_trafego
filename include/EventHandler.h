@@ -90,8 +90,8 @@ class EventHandler {
     Event next_event() const;
 
  private:
-    List<Event> event_list_;
-    Event current_;
+    List<Event> event_list_; //! < Lista de eventos da simulação
+    Event current_; //! < Evento atual (sendo processado)
 };
 
 #endif

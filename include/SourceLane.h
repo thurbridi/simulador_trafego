@@ -55,10 +55,11 @@ class SourceLane : public NonConsumerLane {
      int missed() const;
 
  private:
-     int base_frequency_;
-     int variation_;
-     int entered_;
-     int missed_;
+     int base_frequency_; //! < Frequencia base de criação de carros
+     int variation_;      //! < Variância da frequencia base
+     int entered_;        //! < Total de carros que entraram na pista
+     int missed_;         //! < Total de carros que não conseguiram entrar na pista
+                          //! (pois estava congestionada)
 };
 
 #endif

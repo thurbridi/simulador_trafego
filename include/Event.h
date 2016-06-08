@@ -51,9 +51,11 @@ class Event {
     bool operator<=(const Event& e) const;
 
  private:
-    int time_;
-    EventType type_;
-    void* source_;
+    int time_; //! < Tempo em que o evento irá ocorrer (em segundos)
+
+    EventType type_; //! < Tipo do evento
+
+    void* source_; //! < Objeto em que o evento atuará
 };
 
 #endif

@@ -51,16 +51,17 @@ class System {
     void report();
 
  private:
-   int simulation_time_;
-   int semaphore_time_;
+   int simulation_time_;  //! < Tempo de simulação (em segundos)
+   int semaphore_time_;   //! < Intervalo de troca de sinal dos semáforos
 
-    ArrayList<Semaphore*> sem_;
-    ArrayList<SourceLane*> source_;
-    ArrayList<CenterLane*> center_;
-    ArrayList<ConsumerLane*> consumer_;
+    ArrayList<Semaphore*> sem_;         //! < Lista de semáforos
+    ArrayList<SourceLane*> source_;     //! < Lista de pistas fonte
+    ArrayList<CenterLane*> center_;     //! < Lista de pistas "centro"
+    ArrayList<ConsumerLane*> consumer_; //! < Lista de pistas consumidor
 
-    EventHandler handler_;
-    std::ofstream ost{"log.txt"};
+    EventHandler handler_; //! < Tratador de eventos do sistema
+
+    std::ofstream ost{"log.txt"}; //! < Arquivo de log com os resultados
 };
 
 #endif

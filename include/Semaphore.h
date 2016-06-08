@@ -54,9 +54,12 @@ class Semaphore {
     int interval();
 
  private:
-    int interval_;
-    SemaphoreState state_;
-    ArrayList<BaseLane*> lane_list_;
+    int interval_; //! < Tempo de troca de sinal do semáforo (em segundos)
+
+    SemaphoreState state_; //! < Direção em que o sinal está aberto
+
+    ArrayList<BaseLane*> lane_list_; //! < Lista de pistas que vão em direção do
+                                     //! semáforo
 };
 
 #endif

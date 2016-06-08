@@ -40,9 +40,8 @@ public:
     BaseLane* destination() const;
 
 private:
-    int size_;
-
-    BaseLane* destination_;
+    int size_; //! < Tamanho do veículo (em metros)
+    BaseLane* destination_; //! < Pista destino do carro
 };
 
 #endif

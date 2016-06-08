@@ -109,9 +109,13 @@ class NonConsumerLane : public BaseLane {
      const Queue<Vehicle>& out() const;
 
  private:
-    Queue<Vehicle> out_;
+    Queue<Vehicle> out_; //! < Fila de carros que estão prontos para trocar de
+                         //! pista
 
-    ArrayList<std::pair<BaseLane*, int>> destination_list_;
+    ArrayList<std::pair<BaseLane*, int>> destination_list_; //! < Lista de
+                                                            //! pistas destino
+                                                            //! associadas com
+                                                            //! um inteiro
 };
 
 #endif

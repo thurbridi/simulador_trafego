@@ -12,5 +12,6 @@ int main() {
     System sys{simulation_time, semaphore_time};
     sys.run();
 
+    std::cout << "Os resultados da simulação estão no arquivo '../log.txt'\n";
     return 0;
 }

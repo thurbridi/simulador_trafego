@@ -1,11 +1,14 @@
 #ifndef EVENT_H
 #define EVENT_H
 
+/**
+ * @brief      Enumeração para tipos de evento
+ */
 enum EventType {
-    kChangeSemaphore,
-    kChangeLane,
-    kArrival,
-    kSpawnVehicle
+    kChangeSemaphore, //! < Evento de mudança do semáforo
+    kChangeLane, //! < Evento de mudança de pista dos veículos
+    kArrival, //! < Evento de chegada do veículo ao fim da pista
+    kSpawnVehicle //! <Evento de entrada de veículo no sistema
 };
 
 /**
@@ -20,7 +23,7 @@ class Event {
      *
      * @param[in]  time    Tempo em que o evento irá ocorrer (em segundos)
      * @param[in]  type    Tipo do evento
-     * @param      source  Ponteiro genérico para o objeto em que o evento
+     * @param      source  Ponteiro para o objeto em que o evento
      *                     atuará
      */
     Event(int time, EventType type, void* source);
@@ -46,8 +49,24 @@ class Event {
      */
     void* source() const;
 
+    /**
+     * @brief      Compara dois eventos utilizando os tempos de ocorrência
+     *
+     * @param[in]  e Evento com o qual se deseja comparar
+     *
+     * @return     True se o tempo de ocorrência deste evento é menor que o
+     *             evento passado como parâmetro, falso caso contrário
+     */
     bool operator<(const Event& e) const;
 
+    /**
+     * @brief      Compara dois eventos utilizando os tempos de ocorrência
+     *
+     * @param[in]  e Evento com o qual se deseja comparar
+     *
+     * @return     True se o tempo de ocorrência deste evento é menor ou igual
+     *             que o evento passado como parâmetro, falso caso contrário
+     */
     bool operator<=(const Event& e) const;
 
  private:

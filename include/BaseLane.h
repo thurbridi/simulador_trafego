@@ -10,8 +10,7 @@ class Vehicle;    // forward declaration
  * @brief      Classe abstrata para as pistas
  *
  * @details    Essa classe é uma classe abstrata para as pistas da simulação,
- *             herda da estrutura de dados fila pois uma pista é basicamente uma
- *             fila de veículos
+ *             utiliza uma fila de veículos
  */
 class BaseLane {
  public:
@@ -29,7 +28,8 @@ class BaseLane {
     virtual ~BaseLane();
 
     /**
-     * @brief      Método puramente virtual
+     * @brief      Método puramente virtual que trata da chegada dos veículos 
+     *             ao fim da pista
      */
     virtual void arrival() = 0;
 

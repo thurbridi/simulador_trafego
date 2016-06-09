@@ -10,10 +10,10 @@
 /**
  * @brief      Classe tratadora de eventos
  *
- * @details    Essa classe cuida da execução de cada evento. Basicamente ela
- *             recebe um evento de uma lista ordenada de eventos, o identifica e
- *             trata de acordo com seu tipo e usa suas informações para
- *             executá-lo corretamente e agendar os próximos eventos de acordo
+ * @details    Essa classe cuida da execução de cada evento. Recebe um evento
+ *             de uma lista ordenada de eventos, o identifica e trata de acordo
+ *             com seu tipo e usa suas informações para executá-lo corretamente
+ *             e agendar os próximos eventos de acordo com o resultado
  */
 class EventHandler {
  public:
@@ -50,7 +50,7 @@ class EventHandler {
      * @param      lane  Pista alvo do evento
      *
      * @details    Essa função trata da execução de eventos de avisam da chegada
-     *             de veículos no "fim" da pista
+     *             de veículos no fim da pista
      */
     void arrival(BaseLane* lane) const;
 

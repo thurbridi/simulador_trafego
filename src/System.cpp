@@ -90,7 +90,9 @@ void System::run() {
 }
 
 void System::report() {
-	int entered = 0;
+    std::ofstream ost{"../log.txt"};
+	
+    int entered = 0;
 	int missed = 0;
 	int exited = 0;
 	int total = 0;
@@ -108,9 +110,9 @@ void System::report() {
 	}
 
 	ost << "Tempo da simulação: " << handler_.current_time() << "s\n"
-			<< "Intervalo de troca do semáforo: " << semaphore_time_ << "s\n"
-			<< "Nº de carros que entraram no sistema: " << entered << '\n'
-			<< "Nº de carros que sairam do sistema: " << exited << '\n'
-			<< "Nº de carros que estão no sistema: " << total << '\n'
-			<< "Nº de carros que não conseguiram entrar no sistema: " << missed << '\n';
+	    << "Intervalo de troca do semáforo: " << semaphore_time_ << "s\n"
+		<< "Nº de carros que entraram no sistema: " << entered << '\n'
+		<< "Nº de carros que sairam do sistema: " << exited << '\n'
+		<< "Nº de carros que estão no sistema: " << total << '\n'
+		<< "Nº de carros que não conseguiram entrar no sistema: " << missed << '\n';
  }

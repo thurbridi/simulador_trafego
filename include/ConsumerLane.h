@@ -23,7 +23,7 @@ class ConsumerLane : public BaseLane {
     ~ConsumerLane();
 
     /**
-     * @brief      Remove os veículos da pista e da simulação
+     * @brief      Trata da chegada dos veículos ao fim da pista, retirando-os do sistema
      */
     void arrival() override;
 

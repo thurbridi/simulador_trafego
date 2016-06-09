@@ -5,7 +5,8 @@
 #include "Vehicle.h"
 
 /**
- * @brief      Descreve uma pista que não é nem fonte, nem sumidouro
+ * @brief      Descreve uma pista que não é nem fonte, nem sumidouro. Os veículos
+               entrantes vêm de uma pista e saem para outra
  */
 class CenterLane : public NonConsumerLane {
  public:

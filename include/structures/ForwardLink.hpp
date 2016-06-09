@@ -1,13 +1,12 @@
 // Copyright [2016] <Filipe Borba>
 
-#ifndef FORWARDLINK_HPP_
-#define FORWARDLINK_HPP_
+#ifndef FORWARD_LINK_HPP
+#define FORWARD_LINK_HPP
 
 
-//! ForwarLink
-/*!
-    Elemento de uma estrutura de dados encadeada
-*/
+/**
+ * @brief      Elemento de uma estrutura de dados encadeada
+ */
 template<typename T>
 class ForwardLink {
  public:

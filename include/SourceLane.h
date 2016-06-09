@@ -15,7 +15,7 @@ class SourceLane : public NonConsumerLane {
      /**
       * @brief      Construtor
       *
-      * @param[in]  space           Tamanho da pista (em metros)
+      * @param[in]  space           Espaço livre da pista (em metros)
       * @param[in]  travel_time     Tempo de percorrimento (em segundos)
       * @param[in]  base_frequency  Frequência base de chegada (criação) de
       *                             veículos (em segundos)
@@ -48,7 +48,7 @@ class SourceLane : public NonConsumerLane {
 
      /**
       * @brief      Retorna o número de veículos que não conseguiram entrar na
-      *             pista (pois a pista estava cheia)
+      *             pista devido ao congestionamento
       *
       * @return     Total de carros que não conseguiram entrar na pista
       */
@@ -59,7 +59,7 @@ class SourceLane : public NonConsumerLane {
      int variation_;      //! < Variância da frequencia base
      int entered_;        //! < Total de carros que entraram na pista
      int missed_;         //! < Total de carros que não conseguiram entrar na pista
-                          //! (pois estava congestionada)
+                          //! < devido ao congestionamento
 };
 
 #endif

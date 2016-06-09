@@ -60,8 +60,6 @@ class System {
     ArrayList<ConsumerLane*> consumer_; //! < Lista de pistas consumidor
 
     EventHandler handler_; //! < Tratador de eventos do sistema
-
-    std::ofstream ost{"../log.txt"}; //! < Arquivo de log com os resultados
 };
 
 #endif

@@ -4,11 +4,14 @@
 #include "structures/ArrayList.hpp"
 #include "BaseLane.h"
 
+/**
+ * @brief      Enumeração para estados do semáforo
+ */
 enum SemaphoreState {
-    kNorth,
-    kEast,
-    kSouth,
-    kWest
+    kNorth, //! < O semáforo está aberto para a pista norte
+    kEast, //! < O semáforo está aberto para a pista leste
+    kSouth, //! < O semáforo está aberto para a pista sul
+    kWest //! < O semáforo está aberto para a pista oeste
 };
 
 /**

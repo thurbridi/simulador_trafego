@@ -6,10 +6,13 @@
 #include "BaseLane.h"
 #include "Vehicle.h"
 
+/**
+ * @brief      Enumeração para as direções a se tomar ao fim da pista
+ */
 enum Direction {
-    kFront,
-    kLeft,
-    kRight
+    kFront, //! < Direção da pista em frente
+    kLeft, //! < Direção da pista à esquerda
+    kRight //! < Direção da pista à direita
 };
 
 /**
@@ -63,16 +66,17 @@ class NonConsumerLane : public BaseLane {
      Vehicle first_vehicle() const;
 
      /**
-      * @brief      Retorna se a pista está "pronta" (tem algum carro na pista)
+      * @brief      Testa se há veículos esperando para trocar de pista
       *
-      * @return     True se a pista não estiver vazia, false caso contrário
+      * @return     True se houverem veículos prontos para trocar de pista,
+      *             false caso contrário
       */
      bool ready() const;
 
      /**
-      * @brief      Retorna quantos carros estão na pista
+      * @brief      Retorna a quantidade veículos estão na pista
       *
-      * @return     Número de carros na pista
+      * @return     Número de veículos na pista
       */
      int size() const override;
 
@@ -112,10 +116,10 @@ class NonConsumerLane : public BaseLane {
     Queue<Vehicle> out_; //! < Fila de carros que estão prontos para trocar de
                          //! pista
 
-    ArrayList<std::pair<BaseLane*, int>> destination_list_; //! < Lista de
-                                                            //! pistas destino
-                                                            //! associadas com
-                                                            //! um inteiro
+    ArrayList<std::pair<BaseLane*,
+                        int>> destination_list_; //! < Lista de pares de pistas
+                                                 //! associadas com a sua 
+                                                 //! probabilidade de tomada
 };
 
 #endif
